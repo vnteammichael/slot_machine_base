@@ -9,11 +9,15 @@
         <Image Name="goods_2.png" />
         <Image Name="goods_3.png" />
         <Project Name="Item.csd" Type="Node" />
+        <Image Name="kuang.png" />
         <Image Name="kuang2.png" />
         <Project Name="Layer_spin.csd" Type="Layer" />
         <Project Name="MainScene.csd" Type="Scene" />
+        <Image Name="qian.png" />
         <Image Name="shijiankuang.png" />
         <Image Name="spin.png" />
+        <Image Name="tu0.png" />
+        <Image Name="xuanguanbeijing.png" />
         <Image Name="yun.png" />
       </RootFolder>
     </Group>

@@ -86,6 +86,16 @@ var Item = cc.Sprite.extend({
         var action = cc.jumpTo(0.5,cc.p(0,this.node.y+5),5,2)
         this.node.runAction(action);
         this.action = ACTIONS.STOP;
+    },
+    animResult: function() {
+        var color = this.color;
+        var action = cc.sequence(
+            cc.tintTo(0.1, 254, 247, 24),
+            cc.blink(1, 4),
+            cc.tintTo(0.1, color.r, color.g, color.b)
+
+        );
+        this.node.runAction(action);
     }
 
 

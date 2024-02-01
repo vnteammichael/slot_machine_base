@@ -51,6 +51,14 @@ var Column = cc.Node.extend({
         this.action = ACTIONS.RUN;
         this.schedule(this.resetReel, 1);
     },
+    renderResult: function(){
+        //check if get in lines win, call a anim
+        for(var i=1;i<this.num_row+1;i++){
+            if(this.item_list[i].getAction() == ACTIONS.STOP){
+                this.item_list[i].animResult();
+            }
+        }
+    },
     resetReel: function(){
         var point = this.num_items - this.num_row - 2;
         var count = 0;
@@ -61,7 +69,6 @@ var Column = cc.Node.extend({
         }
         
         if (count>=point){
-            this.action = ACTIONS.STOP;
             var temp_list = this.item_list.slice(0,point); 
             this.item_list = this.item_list.slice(point).concat(temp_list);
             for(var i=this.num_items - point;i<this.num_items;i++){
@@ -72,6 +79,7 @@ var Column = cc.Node.extend({
                     this.item_list[i].setItemCode(code);
                 }
             }
+            this.action = ACTIONS.STOP;
             this.unschedule(this.resetReel);
             
         }
