@@ -16,6 +16,10 @@
         "src/App.js",
         "src/Item.js",
         "src/Column.js",
-        "src/ResourceManager.js"
+        "src/Network/GameClient.js",
+        "src/ResourceManager.js",
+        "src/MobileScreen.js",
+        "src/PCScreen.js",
+        "src/Utils.js"
     ]
 }

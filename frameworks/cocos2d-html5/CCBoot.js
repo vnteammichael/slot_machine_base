@@ -2475,10 +2475,11 @@ cc.game = /** @lends cc.game# */{
         localConStyle = localContainer.style;
         localConStyle.width = (width || 480) + "px";
         localConStyle.height = (height || 320) + "px";
-        localConStyle.margin = "0 auto";
+        localConStyle.margin = "0px";
+        localConStyle.padding = "0px";
 
-        localConStyle.position = 'relative';
-        localConStyle.overflow = 'hidden';
+        // localConStyle.position = 'relative';
+        // localConStyle.overflow = 'hidden';
         localContainer.top = '100%';
 
         if (cc._renderType === cc.game.RENDER_TYPE_WEBGL) {

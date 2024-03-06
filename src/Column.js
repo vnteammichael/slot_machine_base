@@ -6,7 +6,7 @@ var Column = cc.Node.extend({
         this.item_list = [];
         this.num_row = config.num_row;
         this.distance = config.distance;
-        this.num_items = config.num_item || 10;
+        this.num_items = config.num_item || 7;
         this.wait_time = config.wait_time;
         this.start_step = 0 - Math.ceil(this.num_row/2);
         this.action = ACTIONS.STOP;
@@ -18,8 +18,16 @@ var Column = cc.Node.extend({
         // Create 15 item with random code
         for ( var i = 0;i<this.num_items; i++){
             var code = Math.floor(Math.random() * 10);// rand from 0 -> 9
+            if (code==8){
+                code = "wild";
+            }
+            if (code == 9){
+                code = "scatter";
+            }
             var item = new Item(code);
             var pos = cc.p(0,(this.start_step + i) * this.distance)
+            item.anchorX = 0.5;
+            item.anchorY = 0.5;
             item.setPosition(pos);
             item.setWaitTime(this.wait_time);
             this.addChild(item);
@@ -38,14 +46,8 @@ var Column = cc.Node.extend({
     },
     spinReel: function(){
         for(var i = 0;i<this.num_items;i++){
-            var pos = cc.p(0,(this.start_step + i - point) * this.distance);;
-            //check
             var point = this.num_items - this.num_row - 2;
-            if (i  >= point){
-                pos = cc.p(0,(this.start_step + i - point) * this.distance);
-
-            }
-            // var new_index = 
+            var pos = cc.p(0,(this.start_step + i - point) * this.distance);
             this.item_list[i].spin(pos);
         }
         this.action = ACTIONS.RUN;
@@ -73,15 +75,22 @@ var Column = cc.Node.extend({
             this.item_list = this.item_list.slice(point).concat(temp_list);
             for(var i=this.num_items - point;i<this.num_items;i++){
                 if(this.item_list[i].getAction() == ACTIONS.STOP){
+
                     var pos = cc.p(0,(this.start_step + i) * this.distance);
                     this.item_list[i].setPosition(pos);
-                    var code = Math.floor(Math.random() * 10);
-                    this.item_list[i].setItemCode(code);
+                    // var code = Math.floor(Math.random() * 10);// rand from 0 -> 9
+                    // if (code==8){
+                    //     code = "wild";
+                    // }
+                    // if (code == 9){
+                    //     code = "scatter";
+                    // }
+                    // this.item_list[i].setItemCode(code);
                 }
             }
+            
             this.action = ACTIONS.STOP;
             this.unschedule(this.resetReel);
-            
         }
     }
 });

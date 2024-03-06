@@ -3,7 +3,27 @@ const ACTIONS = {
     RUN: 1,
     STOP:0
 }
-const MOVE_SPEED = 1200;
+const MOVE_SPEED = 3200;
+
+const ITEM_IMAGE_SCALE_MOBILE = 0.125;
+const ITEM_IMAGE_SCALE_PC = 0.06;
+const WILD_SCALE_PC = 0.08;
+const WILD_SCALE_MOBILE = 0.16;
+const BORDER_SCALE_PC = 0.065;
+const BORDER_SCALE_MOBILE = 0.13;
+
+const ITEM_IDLE_SCALE = {
+    "0": -0.005,
+    "1": -0.008,
+    "2": -0.008,
+    "3": -0.009,
+    "4": -0.008,
+    "5": -0.008,
+    "6": -0.002,
+    "7": -0.008,
+    "wild": -0.015,
+    "scatter":0
+}
 
 var Item = cc.Sprite.extend({
     ctor: function(item_code){
@@ -13,18 +33,61 @@ var Item = cc.Sprite.extend({
         this.item_code = item_code;
         this.wait_time = 0;
         this.action = ACTIONS.STOP;
+        this.scaleItemFrame = ITEM_IMAGE_SCALE_PC;
+        this.scaleWild = WILD_SCALE_PC;
+        this.scaleBorder = BORDER_SCALE_PC;
+        this.anims = {};
         this.init();
 
     },
     init : function () {
+        
+        ResourceManager.addSpriteFramesResource("item");
         this.node = ccs.load(res.Item_json).node;
-        this.node.scale = 0.47;
-        this.item_idle = this.node.getChildByName("bg_item").getChildByName("item_img");
+        this.item_idle = this.node.getChildByName("bg_item");
+        if (cc.sys.isMobile){
+            this.scaleItemFrame = ITEM_IMAGE_SCALE_MOBILE;
+            this.scaleWild = WILD_SCALE_MOBILE;
+            this.scaleBorder = BORDER_SCALE_MOBILE;
+        }
+        //load anim wild
+        this.initAnims();
+        
+        //load border
+        this.loadBorder();
+        
         this.loadItemIdle();
-        // this.node.x = 50;
-        // this.node.y = 230;
-        // this.setPosition(cc.p(this.x,this.y))
         this.addChild(this.node);
+    },
+    initAnims : function() {
+        //wild
+        var delayTime = 0.04;
+        var anim = new cc.Animation();
+        for(var i = 1; i<=21; ++i){
+            var frameName = "cf_" + i +".png";
+            anim.addSpriteFrame(ResourceManager.getSpriteFrame(frameName));
+        }
+        this.anims['wild'] = anim;
+        anim.setDelayPerUnit(delayTime * 2);
+        anim.setRestoreOriginalFrame(true);
+        anim.retain();
+        //sakura leave
+        anim = new cc.Animation();
+        for(var i = 0; i<=19; ++i){
+            var frameName = "sakura-leaves-" + i +".png";
+            anim.addSpriteFrame(ResourceManager.getSpriteFrame(frameName));
+        }
+        this.anims['sakura'] = anim;
+        anim.setDelayPerUnit(delayTime * 2);
+        anim.setRestoreOriginalFrame(true);
+        anim.retain();
+
+    },
+    loadBorder : function () {
+        var frame = ResourceManager.getSpriteFrame("border.png");
+        var border = new cc.Sprite(frame);
+        this.node.addChild(border);
+        border.scale = this.scaleBorder;
     },
     setWaitTime : function(wait_time) {
         this.wait_time = wait_time;
@@ -40,14 +103,63 @@ var Item = cc.Sprite.extend({
         return this.action;
     },
     loadItemIdle: function(){
-        var frame = ResourceManager.getSpriteFrame("goods_" + this.item_code + ".png");
+        
+        this.setVisible(true);
+        this.item_idle.removeAllChildren();
+        this.item_idle.stopAllActions();
+        switch (this.item_code) {
+            case "wild":
+                this.loadItemWild();
+                break;
+            case "scatter":
+                this.loadItemScatter();
+                break
+            default:
+                this.item_idle.scale = this.scaleItemFrame ;
+                var frame = ResourceManager.getSpriteFrame("symbol_" + this.item_code + ".png");
+                this.item_idle.setSpriteFrame(frame);
+                break;
+        }
+        this.item_idle.scale = this.item_idle.scale + ITEM_IDLE_SCALE[this.item_code];
+        
+    },
+    loadItemWild: function(){
+        this.item_idle.scale = this.scaleWild;
+        var action_anim = new cc.RepeatForever(cc.animate(this.anims['wild']));
+        this.item_idle.runAction(action_anim);
+        var txt_sprite = new cc.Sprite(ResourceManager.getSpriteFrame("wild_text.png"))
+        txt_sprite.scale = 0.5;
+        this.item_idle.addChild(txt_sprite);
+        txt_sprite.anchorX = 0;
+        txt_sprite.anchorY = 0.2;
+        txt_sprite.x = 30;
+    },
+    loadItemScatter: function(){
+        var frame = ResourceManager.getSpriteFrame("symbol_" + this.item_code + ".png");
         this.item_idle.setSpriteFrame(frame);
-        this.item_idle.scale = 4;
+        this.item_idle.scale = this.scaleItemFrame;
+
+        // this.item_idle.setScale(this.scaleWild);
+        var action_anim = new cc.RepeatForever(cc.animate(this.anims['sakura']));
+        var anim_sprite = new cc.Sprite();
+        anim_sprite.runAction(action_anim);
+        this.item_idle.addChild(anim_sprite);
+        anim_sprite.scale = 2.5;
+        anim_sprite.anchorX = 0.1;
+        anim_sprite.anchorY =  0.1;
+        var txt_sprite = new cc.Sprite(ResourceManager.getSpriteFrame("scatter_text.png"))
+        // txt_sprite.setScale(0.8);
+        this.item_idle.addChild(txt_sprite);
+        txt_sprite.anchorX = 0;
+        txt_sprite.anchorY = 0.3;
+        // txt_sprite.x = this.item_idle.width/2 + 10;
     },
     setPosition: function (position){
+        this.setVisible(false);
         this.node.position = position;
         this.node.x = position.x;
         this.node.y = position.y;
+        this.setVisible(true);
     },
     spin: function(position){
         this.action = ACTIONS.RUN;
@@ -90,9 +202,9 @@ var Item = cc.Sprite.extend({
     animResult: function() {
         var color = this.color;
         var action = cc.sequence(
-            cc.tintTo(0.1, 254, 247, 24),
-            cc.blink(1, 4),
-            cc.tintTo(0.1, color.r, color.g, color.b)
+            cc.tintTo(0.01, 254, 247, 24),
+            cc.blink(0.5, 3),
+            cc.tintTo(0.01, color.r, color.g, color.b)
 
         );
         this.node.runAction(action);

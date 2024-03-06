@@ -1,0 +1,387 @@
+{
+  "ID": "d13aa7cb-3f82-4eae-b632-e62b8350b4d3",
+  "Version": "3.10.0.0",
+  "Name": "layer_mobile",
+  "Content": {
+    "Content": {
+      "Animation": {
+        "Duration": 0,
+        "Speed": 1.0,
+        "Timelines": [],
+        "ctype": "TimelineActionData"
+      },
+      "AnimationList": [],
+      "ObjectData": {
+        "Tag": 7,
+        "Children": [
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "NEN.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 1,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 196.4789,
+              "Y": 425.9955
+            },
+            "Scale": {
+              "ScaleX": 0.321,
+              "ScaleY": 0.3408
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PositionPercentXEnabled": true,
+            "PositionPercentYEnabled": true,
+            "PrePosition": {
+              "X": 0.4999,
+              "Y": 0.5
+            },
+            "PreSize": {
+              "X": 10.1781,
+              "Y": 2.9343
+            },
+            "LeftMargin": -1803.5211,
+            "RightMargin": -1803.479,
+            "TopMargin": -823.9955,
+            "BottomMargin": -824.0045,
+            "Tag": 26,
+            "ActionTag": -1073775965,
+            "Size": {
+              "X": 4000.0,
+              "Y": 2500.0
+            },
+            "Alpha": 137,
+            "Name": "NEN_13",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "BANG.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 1,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 196.5056,
+              "Y": 363.3176
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PositionPercentXEnabled": true,
+            "PositionPercentYEnabled": true,
+            "PrePosition": {
+              "X": 0.5,
+              "Y": 0.4264
+            },
+            "PreSize": {
+              "X": 1.0,
+              "Y": 0.3404
+            },
+            "LeftMargin": 0.0056,
+            "RightMargin": -0.0056,
+            "TopMargin": 343.6824,
+            "BottomMargin": 218.3176,
+            "Tag": 17,
+            "ActionTag": -2084590464,
+            "Size": {
+              "X": 393.0,
+              "Y": 290.0
+            },
+            "Name": "mid_bg",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "BACKGROUND.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 1,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 1.0
+            },
+            "Position": {
+              "X": 196.5,
+              "Y": 836.0
+            },
+            "Scale": {
+              "ScaleX": 1.0001,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PositionPercentXEnabled": true,
+            "PrePosition": {
+              "X": 0.5,
+              "Y": 0.9812
+            },
+            "PreSize": {
+              "X": 1.0,
+              "Y": 0.385
+            },
+            "TopMargin": 16.0,
+            "BottomMargin": 508.0,
+            "Tag": 16,
+            "ActionTag": -1586380616,
+            "Size": {
+              "X": 393.0,
+              "Y": 328.0
+            },
+            "Name": "top_bg",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "KHUNG.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 1,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5
+            },
+            "Position": {
+              "X": 196.5,
+              "Y": 20.0
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PositionPercentXEnabled": true,
+            "PrePosition": {
+              "X": 0.5,
+              "Y": 0.0235
+            },
+            "PreSize": {
+              "X": 1.0,
+              "Y": 0.2347
+            },
+            "TopMargin": 632.0,
+            "BottomMargin": 20.0,
+            "Tag": 20,
+            "ActionTag": -1788542883,
+            "Size": {
+              "X": 393.0,
+              "Y": 200.0
+            },
+            "Name": "bot_bg",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "top.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 1,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 196.5,
+              "Y": 495.6084
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PositionPercentXEnabled": true,
+            "PositionPercentYEnabled": true,
+            "PrePosition": {
+              "X": 0.5,
+              "Y": 0.5817
+            },
+            "PreSize": {
+              "X": 1.0,
+              "Y": 0.0282
+            },
+            "TopMargin": 344.3916,
+            "BottomMargin": 483.6084,
+            "Tag": 18,
+            "ActionTag": 101116941,
+            "Size": {
+              "X": 393.0,
+              "Y": 24.0
+            },
+            "Name": "top",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "bot.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 1,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 196.5,
+              "Y": 231.8196
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PositionPercentXEnabled": true,
+            "PrePosition": {
+              "X": 0.5,
+              "Y": 0.2721
+            },
+            "PreSize": {
+              "X": 1.0,
+              "Y": 0.0282
+            },
+            "TopMargin": 608.1804,
+            "BottomMargin": 219.8196,
+            "Tag": 19,
+            "ActionTag": 1002006983,
+            "Size": {
+              "X": 393.0,
+              "Y": 24.0
+            },
+            "Name": "bot",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "",
+            "TextColor": {
+              "R": 0,
+              "G": 0,
+              "B": 0
+            },
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "SPIN BUTTON.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "SPIN BUTTON.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "SPIN BUTTON.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 48,
+            "Scale9Height": 56,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 196.5,
+              "Y": 127.8
+            },
+            "Scale": {
+              "ScaleX": 0.96,
+              "ScaleY": 0.96
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PositionPercentXEnabled": true,
+            "PositionPercentYEnabled": true,
+            "PrePosition": {
+              "X": 0.5,
+              "Y": 0.15
+            },
+            "PreSize": {
+              "X": 0.1985,
+              "Y": 0.0915
+            },
+            "LeftMargin": 157.5,
+            "RightMargin": 157.5,
+            "TopMargin": 685.2,
+            "BottomMargin": 88.8,
+            "CallBackType": "Touch",
+            "Tag": 30,
+            "ActionTag": -992409581,
+            "Size": {
+              "X": 78.0,
+              "Y": 78.0
+            },
+            "Name": "btn_spin",
+            "ctype": "ButtonObjectData"
+          }
+        ],
+        "Size": {
+          "X": 393.0,
+          "Y": 852.0
+        },
+        "Name": "Layer_spin",
+        "ctype": "LayerObjectData"
+      },
+      "UsedResources": [
+        "BACKGROUND.png",
+        "BANG.png",
+        "bot.png",
+        "KHUNG.png",
+        "NEN.png",
+        "SPIN BUTTON.png",
+        "top.png"
+      ],
+      "ctype": "GameFileData"
+    }
+  },
+  "Type": "Layer"
+}

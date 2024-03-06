@@ -16,8 +16,8 @@
         "Children": [
           {
             "FileData": {
-              "Type": "Normal",
-              "Path": "kuang2.png",
+              "Type": "Default",
+              "Path": "Default/Sprite.png",
               "Plist": ""
             },
             "BlendFunc": {
@@ -48,64 +48,15 @@
               "X": 0.0,
               "Y": 0.0
             },
-            "LeftMargin": -163.0,
-            "RightMargin": -163.0,
-            "TopMargin": -191.5,
-            "BottomMargin": -191.5,
+            "LeftMargin": -23.0,
+            "RightMargin": -23.0,
+            "TopMargin": -23.0,
+            "BottomMargin": -23.0,
             "Tag": 11,
-            "Children": [
-              {
-                "FileData": {
-                  "Type": "Normal",
-                  "Path": "goods_1.png",
-                  "Plist": ""
-                },
-                "BlendFunc": {
-                  "Src": 1,
-                  "Dst": 771
-                },
-                "AnchorPoint": {
-                  "ScaleX": 0.5,
-                  "ScaleY": 0.5
-                },
-                "Position": {
-                  "X": 166.029,
-                  "Y": 196.0088
-                },
-                "Scale": {
-                  "ScaleX": 2.0,
-                  "ScaleY": 2.0
-                },
-                "CColor": {},
-                "IconVisible": false,
-                "PositionPercentXEnabled": true,
-                "PositionPercentYEnabled": true,
-                "PrePosition": {
-                  "X": 0.5093,
-                  "Y": 0.5118
-                },
-                "PreSize": {
-                  "X": 0.1595,
-                  "Y": 0.1697
-                },
-                "LeftMargin": 140.029,
-                "RightMargin": 133.971,
-                "TopMargin": 154.4912,
-                "BottomMargin": 163.5088,
-                "Tag": 12,
-                "ActionTag": -48975601,
-                "Size": {
-                  "X": 52.0,
-                  "Y": 65.0
-                },
-                "Name": "item_img",
-                "ctype": "SpriteObjectData"
-              }
-            ],
             "ActionTag": -1917253627,
             "Size": {
-              "X": 326.0,
-              "Y": 383.0
+              "X": 46.0,
+              "Y": 46.0
             },
             "Name": "bg_item",
             "ctype": "SpriteObjectData"
@@ -119,8 +70,7 @@
         "ctype": "SingleNodeObjectData"
       },
       "UsedResources": [
-        "goods_1.png",
-        "kuang2.png"
+        "Default/Sprite.png"
       ],
       "ctype": "GameFileData"
     }
