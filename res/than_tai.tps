@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>item.png</filename>
+        <filename>than_tai.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -54,9 +54,9 @@
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
-            <int>4096</int>
+            <int>2048</int>
             <key>height</key>
-            <int>4096</int>
+            <int>2048</int>
         </QSize>
         <key>fixedTextureSize</key>
         <QSize>
@@ -99,7 +99,7 @@
             <key>packageName</key>
             <string>Texture</string>
             <key>javaFileName</key>
-            <filename>item.java</filename>
+            <filename>than_tai.java</filename>
             <key>wrap</key>
             <struct type="AndEngineWrap">
                 <key>s</key>
@@ -111,7 +111,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>item.plist</filename>
+        <filename>than_tai.plist</filename>
         <key>multiPack</key>
         <false/>
         <key>mainExtension</key>
@@ -148,18 +148,23 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>C:/Users/USER/Downloads/symbol_7.png</filename>
-            <filename>C:/Users/USER/Downloads/symbol_6.png</filename>
-            <filename>C:/Users/USER/Downloads/symbol_5.png</filename>
-            <filename>C:/Users/USER/Downloads/symbol_4.png</filename>
-            <filename>C:/Users/USER/Downloads/symbol_3.png</filename>
-            <filename>C:/Users/USER/Downloads/symbol_2.png</filename>
-            <filename>C:/Users/USER/Downloads/symbol_1.png</filename>
-            <filename>C:/Users/USER/Downloads/symbol_0.png</filename>
-            <filename>C:/Users/USER/Downloads/wild_text.png</filename>
-            <filename>C:/Users/USER/Downloads/scatter_text.png</filename>
-            <filename>C:/Users/USER/Downloads/symbol_scatter.png</filename>
-            <filename>C:/Users/USER/Downloads/border.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_4.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_5.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_6.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_7.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_8.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_9.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_10.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_11.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_12.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_13.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_14.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_15.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_16.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_17.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_1.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_2.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/than tai/than_tai_3.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

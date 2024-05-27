@@ -26,21 +26,27 @@
           <PlistImageFile Name="cf_8.png" Key="cf_8.png" />
           <PlistImageFile Name="cf_9.png" Key="cf_9.png" />
         </PlistImageFolder>
+        <Image Name="add.png" />
+        <Image Name="AUTO TABLE.png" />
         <Image Name="background.jpg" />
         <Image Name="BACKGROUND.png" />
         <Image Name="BANG.png" />
         <Image Name="bot.png" />
         <Project Name="Item.csd" Type="Node" />
         <Image Name="KHUNG.png" />
+        <Project Name="layer_mobile.csd" Type="Layer" />
         <Project Name="layer_pc.csd" Type="Layer" />
-        <Project Name="MainScene.csd" Type="Scene" />
+        <Project Name="LoadingScreen.csd" Type="Scene" />
+        <Project Name="LoginScreen.csd" Type="Scene" />
         <Image Name="NEN.png" />
-        <Project Name="PopupAutoSpin.csd" Type="Node" />
+        <Image Name="panel_1.png" />
+        <Image Name="panel_2.png" />
+        <Project Name="Popup.csd" Type="Node" />
+        <Image Name="reduce.png" />
         <Image Name="SPIN BUTTON.png" />
         <Image Name="symbol_0.png" />
         <Image Name="top.png" />
         <Image Name="wild_symbol.png" />
-        <Project Name="layer_mobile.csd" Type="Layer" />
       </RootFolder>
     </Group>
   </SolutionFolder>

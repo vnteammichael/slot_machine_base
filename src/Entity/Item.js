@@ -115,6 +115,7 @@ var Item = cc.Sprite.extend({
                 this.loadItemScatter();
                 break
             default:
+                
                 this.item_idle.scale = this.scaleItemFrame ;
                 var frame = ResourceManager.getSpriteFrame("symbol_" + this.item_code + ".png");
                 this.item_idle.setSpriteFrame(frame);
@@ -199,15 +200,15 @@ var Item = cc.Sprite.extend({
         this.node.runAction(action);
         this.action = ACTIONS.STOP;
     },
-    animResult: function() {
+    animResult: function(delay) {
         var color = this.color;
         var action = cc.sequence(
             cc.tintTo(0.01, 254, 247, 24),
-            cc.blink(0.5, 3),
+            cc.blink(0.4, 3),
             cc.tintTo(0.01, color.r, color.g, color.b)
 
         );
-        this.node.runAction(action);
+        this.node.runAction(cc.sequence(cc.delayTime(delay), action));
     }
 
 

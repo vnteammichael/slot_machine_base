@@ -1,0 +1,266 @@
+{
+  "ID": "6328e849-8f05-47a1-ab90-cad810a70fcb",
+  "Version": "3.10.0.0",
+  "Name": "LoginScreen",
+  "Content": {
+    "Content": {
+      "Animation": {
+        "Duration": 0,
+        "Speed": 1.0,
+        "Timelines": [],
+        "ctype": "TimelineActionData"
+      },
+      "AnimationList": [],
+      "ObjectData": {
+        "Tag": 68,
+        "Children": [
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "background.jpg",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 770,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 196.5,
+              "Y": 426.0
+            },
+            "Scale": {
+              "ScaleX": 0.7475,
+              "ScaleY": 0.8069
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PositionPercentXEnabled": true,
+            "PositionPercentYEnabled": true,
+            "PrePosition": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PreSize": {
+              "X": 4.8855,
+              "Y": 1.2676
+            },
+            "LeftMargin": -763.5,
+            "RightMargin": -763.5,
+            "TopMargin": -114.0,
+            "BottomMargin": -114.0,
+            "Tag": 69,
+            "ActionTag": -277024274,
+            "Size": {
+              "X": 1920.0,
+              "Y": 1080.0
+            },
+            "Alpha": 160,
+            "Name": "bg",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FontSize": 14,
+            "ButtonText": "Login",
+            "TextColor": {
+              "R": 65,
+              "G": 65,
+              "B": 70
+            },
+            "DisabledFileData": {
+              "Type": "Default",
+              "Path": "Default/Button_Disable.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Default",
+              "Path": "Default/Button_Press.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Default",
+              "Path": "Default/Button_Normal.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 16,
+            "Scale9Height": 14,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 196.5,
+              "Y": 255.6
+            },
+            "Scale": {
+              "ScaleX": 1.5,
+              "ScaleY": 1.5
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PositionPercentXEnabled": true,
+            "PositionPercentYEnabled": true,
+            "PrePosition": {
+              "X": 0.5,
+              "Y": 0.3
+            },
+            "PreSize": {
+              "X": 0.117,
+              "Y": 0.0423
+            },
+            "LeftMargin": 173.5,
+            "RightMargin": 173.5,
+            "TopMargin": 578.4,
+            "BottomMargin": 237.6,
+            "Tag": 70,
+            "ActionTag": -1243888982,
+            "Size": {
+              "X": 46.0,
+              "Y": 36.0
+            },
+            "Name": "btn_login",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "IsCustomSize": true,
+            "FontSize": 30,
+            "LabelText": "USER ID\n",
+            "HorizontalAlignmentType": "HT_Center",
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 196.5,
+              "Y": 511.1999
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PositionPercentXEnabled": true,
+            "PositionPercentYEnabled": true,
+            "PrePosition": {
+              "X": 0.5,
+              "Y": 0.6
+            },
+            "PercentWidthEnable": true,
+            "PercentHeightEnable": true,
+            "PercentWidthEnabled": true,
+            "PercentHeightEnabled": true,
+            "PreSize": {
+              "X": 0.5,
+              "Y": 0.05
+            },
+            "LeftMargin": 98.25,
+            "RightMargin": 98.25,
+            "TopMargin": 319.5001,
+            "BottomMargin": 489.8999,
+            "Tag": 71,
+            "ActionTag": 2012069553,
+            "Size": {
+              "X": 196.5,
+              "Y": 42.6
+            },
+            "Name": "label_id",
+            "ctype": "TextObjectData"
+          },
+          {
+            "FontSize": 25,
+            "IsCustomSize": true,
+            "LabelText": "input your id",
+            "PlaceHolderText": "",
+            "MaxLengthEnable": true,
+            "MaxLengthText": 20,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 196.5,
+              "Y": 426.0
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PositionPercentXEnabled": true,
+            "PositionPercentYEnabled": true,
+            "PrePosition": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PercentWidthEnable": true,
+            "PercentHeightEnable": true,
+            "PercentWidthEnabled": true,
+            "PercentHeightEnabled": true,
+            "PreSize": {
+              "X": 0.5,
+              "Y": 0.05
+            },
+            "LeftMargin": 98.25,
+            "RightMargin": 98.25,
+            "TopMargin": 404.7,
+            "BottomMargin": 404.7,
+            "Tag": 72,
+            "ActionTag": 3374833,
+            "Size": {
+              "X": 196.5,
+              "Y": 42.6
+            },
+            "Name": "input_id",
+            "ctype": "TextFieldObjectData"
+          }
+        ],
+        "Size": {
+          "X": 393.0,
+          "Y": 852.0
+        },
+        "Name": "Scene",
+        "ctype": "SingleNodeObjectData"
+      },
+      "UsedResources": [
+        "background.jpg",
+        "Default/Button_Disable.png",
+        "Default/Button_Normal.png",
+        "Default/Button_Press.png"
+      ],
+      "ctype": "GameFileData"
+    }
+  },
+  "Type": "Scene"
+}

@@ -1,4 +1,4 @@
-var PCScreen = cc.Layer.extend({
+var MobileScreen = cc.Layer.extend({
     sprite:null,
     ctor:function () {
         //////////////////////////////
@@ -6,17 +6,22 @@ var PCScreen = cc.Layer.extend({
         this._super();
         ResourceManager.addSpriteFramesResource("item");
 
+        this.arr_reel1 = [];
+        // this.setSpriteFrame(res.HelloWorld_png);
+        /////////////////////////////
+        // 2. add a menu item with "X" image, which is clicked to quit the program
+        //    you may modify it.
+        // ask the window size
         var size = cc.winSize;
         var fixed_width = 18;
 
-        var mainscene = ccs.load(res.layer_pc_json);
+        var mainscene = ccs.load(res.layer_mobile_json);
         var bg_reel = mainscene.node
         bg_reel.anchorX = 0.5;
         bg_reel.anchorY = 0.5;
         bg_reel.x = cc.winSize.width/2;
         bg_reel.y = cc.winSize.height/2;
-        // bg_reel.setScale(0.45);
-        // bg_reel.setScale(getScaleToFitImageToWinSize(bg_reel.getContentSize()));
+        bg_reel.setScale(getScaleToFitImageToWinSize(bg_reel.getContentSize()));
         this.addChild(bg_reel);
 
         
@@ -42,23 +47,33 @@ var PCScreen = cc.Layer.extend({
         bot_bg.setLocalZOrder(900);
 
 
+        var bg_panel_left = bg_reel.getChildByName("bg_panel_left");
+        bg_panel_left.setLocalZOrder(905);
+
+        var bg_panel_mid = bg_reel.getChildByName("bg_panel_mid");
+        bg_panel_mid.setLocalZOrder(905);
+
+        var bg_panel_right = bg_reel.getChildByName("bg_panel_right");
+        bg_panel_right.setLocalZOrder(905);
+
+
+
         this.columns = [];
         for(var i = 0;i<this.config.col;i++){
             var config = {};
             config.num_row = this.config.row;
-            config.distance = 37 ;
+            config.distance = 82 ;
             config.wait_time = 0.2*i;
             var col = new Column(config);
-            var x = 35 * i + 170;
-            var y = bg_reel.height * 0.42;
+            var x = 78.3 * i + 38;
+            var y = bg_reel.height * 0.4264;
             var pos = cc.p(x,y)
             col.anchorX = 0;
             col.setPosition(pos);
             bg_reel.addChild(col,5)
             this.columns.push(col);
-            // col.spin_reel();
+            // break;
         }
-        
 
         return true;
     },
@@ -87,15 +102,13 @@ var PCScreen = cc.Layer.extend({
                         this.columns[i].spinReel();
                     }
                     this.schedule(this.getResultRender, 1);
-                }
-                // var array = ["scatter"];
-                // var code = array[Math.floor(Math.random() * array.length)];
-                // this.item.setItemCode(code);
+                }     
                 break;
             default:
                 break;
         }
     },
+    
     addBackground:function()
     {
         var bg = new cc.Sprite(res.HelloWorld_png);

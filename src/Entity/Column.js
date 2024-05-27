@@ -6,7 +6,7 @@ var Column = cc.Node.extend({
         this.item_list = [];
         this.num_row = config.num_row;
         this.distance = config.distance;
-        this.num_items = config.num_item || 7;
+        this.num_items = config.num_item || 15;
         this.wait_time = config.wait_time;
         this.start_step = 0 - Math.ceil(this.num_row/2);
         this.action = ACTIONS.STOP;
@@ -18,10 +18,10 @@ var Column = cc.Node.extend({
         // Create 15 item with random code
         for ( var i = 0;i<this.num_items; i++){
             var code = Math.floor(Math.random() * 10);// rand from 0 -> 9
-            if (code==8){
+            if (code === 8){
                 code = "wild";
             }
-            if (code == 9){
+            if (code === 9){
                 code = "scatter";
             }
             var item = new Item(code);
@@ -53,11 +53,11 @@ var Column = cc.Node.extend({
         this.action = ACTIONS.RUN;
         this.schedule(this.resetReel, 1);
     },
-    renderResult: function(){
+    renderResult: function(item_code,delay){
         //check if get in lines win, call a anim
         for(var i=1;i<this.num_row+1;i++){
-            if(this.item_list[i].getAction() == ACTIONS.STOP){
-                this.item_list[i].animResult();
+            if(this.item_list[i].getAction() == ACTIONS.STOP &&( this.item_list[i].getItemCode() == item_code || this.item_list[i].getItemCode() == "wild")){
+                this.item_list[i].animResult(delay);
             }
         }
     },
@@ -78,14 +78,14 @@ var Column = cc.Node.extend({
 
                     var pos = cc.p(0,(this.start_step + i) * this.distance);
                     this.item_list[i].setPosition(pos);
-                    // var code = Math.floor(Math.random() * 10);// rand from 0 -> 9
-                    // if (code==8){
-                    //     code = "wild";
-                    // }
-                    // if (code == 9){
-                    //     code = "scatter";
-                    // }
-                    // this.item_list[i].setItemCode(code);
+                    var code = Math.floor(Math.random() * 10);// rand from 0 -> 9
+                    if (code==8){
+                        code = "wild";
+                    }
+                    if (code == 9){
+                        code = "scatter";
+                    }
+                    this.item_list[i].setItemCode(code);
                 }
             }
             

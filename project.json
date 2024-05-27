@@ -9,17 +9,36 @@
     "renderMode" : 0,
     "engineDir":"frameworks/cocos2d-html5",
 
-    "modules" : ["cocos2d", "cocostudio"],
+    "modules" : ["cocos2d", "cocostudio", "extensions"],
 
     "jsList" : [
         "src/Resource.js",
+        "src/UIFactory.js",
+
         "src/App.js",
-        "src/Item.js",
-        "src/Column.js",
+
+        "src/Entity/Item.js",
+        "src/Entity/Column.js",
+
         "src/Network/GameClient.js",
-        "src/ResourceManager.js",
-        "src/MobileScreen.js",
-        "src/PCScreen.js",
-        "src/Utils.js"
+
+        "src/Manager/ResourceManager.js",
+        "src/Manager/GameGUIManager.js",
+
+
+        "src/Screen/MobileScreen.js",
+        "src/Screen/PCScreen.js",
+        "src/Screen/LoginScreen.js",
+
+
+        "src/Utils.js",
+
+        "src/Action/Action.js",
+        "src/Action/ActionFactory.js",
+        "src/Action/ActionMapping.js",
+        "src/Action/Cmd.js",
+        "src/Action/LoginAction.js",
+        "src/Action/InitInfoAction.js",
+        "src/Action/SpinAction.js"
     ]
 }

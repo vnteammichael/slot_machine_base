@@ -33,9 +33,21 @@ var GameClient = cc.Class.extend({
 
     // Handle incoming messages
     onMessage: function(event) {
-        console.log("Message received:", event.data);
-        let inPacket = new InPacket();
-        inPacket.receiveMessage(event.data);
+        // console.log("Message received:", event);
+        data = JSON.parse(event.data)
+        console.log("Message received:", data);
+        switch(data.cmd){
+            case gv.CMD.LOGIN:
+                ActionFactory.createAction(LoginAction,data.data);
+                break; 
+            case gv.CMD.INIT_INFO:
+                ActionFactory.createAction(InitInfoAction,data.data);
+                break; 
+            
+            case gv.CMD.SPIN:
+                ActionFactory.createAction(SpinAction,data.data);
+                break; 
+        }
         // Process the message
         // Depending on the structure of your messages, you might
         // have different handling logic based on the cmdId or other data.

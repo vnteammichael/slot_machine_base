@@ -5,6 +5,7 @@ const mobileHeight = 852;
 const mobileWidth = 393;
 
 const pcRatio = pcWidth/pcHeight;
+var gv = gv || {};
 
 
 cc.game.onStart = function(){
@@ -15,36 +16,40 @@ cc.game.onStart = function(){
     cc.view.enableRetina(cc.sys.os === cc.sys.OS_IOS ? true : false);
     
     // Adjust viewport meta
-    cc.view.adjustViewPort(true);
-
-    if (cc.sys.os === cc.sys.OS_X || cc.sys.os === cc.sys.OS_WINDOWS){
-        var currentBrowserRatio = window.innerWidth/window.innerHeight;
-        if (currentBrowserRatio >= pcRatio){
-            cc.view._adjustSizeToBrowser(); 
-            cc.view.setDesignResolutionSize(pcWidth, pcHeight, cc.ResolutionPolicy.SHOW_ALL);
-        }else{
-            cc.view._adjustSizeToBrowser(); 
-            cc.view.setDesignResolutionSize(pcWidth, pcHeight, cc.ResolutionPolicy.FIXED_HEIGHT);
-        }
-        
-        
-    }else{
-        cc.view.enableAutoFullScreen(false);
-        cc.view.setDesignResolutionSize(mobileWidth, mobileHeight, cc.ResolutionPolicy.FIXED_HEIGHT);
-        
-    }
-    cc.view.resizeWithBrowserSize(true);
-    var urlParams = new URLSearchParams(window.location.search);
-    var gameclient  = new GameClient();
-    gameclient.connect("ws://localhost:8080")
-    
-    setTimeout(() => {
-        if (gameclient.isConnected) {
-            gameclient.send(JSON.stringify({"cmd":1000,"data":{"user_id":1}}));
-        }
-    }, 1000);
+   
     cc.LoaderScene.preload(g_resources, function () {
-        cc.director.runScene(new HelloWorldScene());
+        cc.view.adjustViewPort(true);
+
+        if (cc.sys.os === cc.sys.OS_X || cc.sys.os === cc.sys.OS_WINDOWS){
+            var currentBrowserRatio = window.innerWidth/window.innerHeight;
+            if (currentBrowserRatio >= pcRatio){
+                cc.view._adjustSizeToBrowser(); 
+                cc.view.setDesignResolutionSize(pcWidth, pcHeight, cc.ResolutionPolicy.SHOW_ALL);
+            }else{
+                cc.view._adjustSizeToBrowser(); 
+                cc.view.setDesignResolutionSize(pcWidth, pcHeight, cc.ResolutionPolicy.FIXED_HEIGHT);
+            }
+            
+            
+        }else{
+            cc.view.enableAutoFullScreen(false);
+            cc.view.setDesignResolutionSize(mobileWidth, mobileHeight, cc.ResolutionPolicy.FIXED_HEIGHT);
+            
+        }
+        cc.view.resizeWithBrowserSize(true);
+        var urlParams = new URLSearchParams(window.location.search);
+        gv.gameclient  = new GameClient();
+        GameGUIManager.getSceneOrCreate(MainScene)
+        // gv.gameclient.connect("ws://localhost:8080")
+        
+        // setTimeout(() => {
+        //     if (gv.gameclient.isConnected) {
+        //         // gv.gameclient.send(JSON.stringify({"cmd":1000,"data":{"token":1}}));
+        //         ActionMapping.dispatch(LoginAction,{"token":1})
+        //     }
+        // }, 1000);
+        
+        cc.director.runScene(new LoginGUI());
     }, this);
 };
 
