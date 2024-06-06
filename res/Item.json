@@ -16,8 +16,8 @@
         "Children": [
           {
             "FileData": {
-              "Type": "Default",
-              "Path": "Default/Sprite.png",
+              "Type": "Normal",
+              "Path": "dao.png",
               "Plist": ""
             },
             "BlendFunc": {
@@ -55,8 +55,8 @@
             "Tag": 11,
             "ActionTag": -1917253627,
             "Size": {
-              "X": 46.0,
-              "Y": 46.0
+              "X": 136.0,
+              "Y": 180.0
             },
             "Name": "bg_item",
             "ctype": "SpriteObjectData"
@@ -70,7 +70,7 @@
         "ctype": "SingleNodeObjectData"
       },
       "UsedResources": [
-        "Default/Sprite.png"
+        "dao.png"
       ],
       "ctype": "GameFileData"
     }

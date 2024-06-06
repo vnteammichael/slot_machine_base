@@ -15,14 +15,14 @@ ActionFactory._createAction = function (actionType, info) {
             action = new SpinAction(info)
             break;
         default:
-            cc.log("Can not parse action:", actionType);
+            // cc.log("Can not parse action:", actionType);
     }
 
     return action;
 };
 
 ActionFactory.createAction = function (actionType, info) {
-    cc.log("-------------Do Action-------------", info);
+    // cc.log("-------------Do Action-------------", info);
 
     var action = ActionFactory._createAction(actionType, info);
 
@@ -33,7 +33,7 @@ ActionFactory.createAction = function (actionType, info) {
 }
 
 ActionFactory.checkAction = function (actionType, info) {
-    cc.log("-------------Check Action-------------", info);
+    // cc.log("-------------Check Action-------------", info);
 
     var action = ActionFactory._createAction(actionType, info);
 

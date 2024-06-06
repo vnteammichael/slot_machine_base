@@ -10,10 +10,10 @@ var MainScene = cc.Scene.extend({
     ctor:function () {
         this._super();
         
-        this.layer = new PCScreen();
-        if (cc.sys.isMobile){
-            this.layer = new MobileScreen();
-        }
+        this.layer = new PlayScreen();
+        // if (cc.sys.isMobile){
+        //     this.layer = new MobileScreen();
+        // }
         this.layer.setName("layer");
         this.addChild(this.layer);
     },

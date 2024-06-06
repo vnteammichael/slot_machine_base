@@ -54,9 +54,9 @@
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
-            <int>4096</int>
+            <int>2048</int>
             <key>height</key>
-            <int>4096</int>
+            <int>2048</int>
         </QSize>
         <key>fixedTextureSize</key>
         <QSize>
@@ -148,18 +148,14 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>C:/Users/USER/Downloads/symbol_7.png</filename>
-            <filename>C:/Users/USER/Downloads/symbol_6.png</filename>
-            <filename>C:/Users/USER/Downloads/symbol_5.png</filename>
-            <filename>C:/Users/USER/Downloads/symbol_4.png</filename>
-            <filename>C:/Users/USER/Downloads/symbol_3.png</filename>
-            <filename>C:/Users/USER/Downloads/symbol_2.png</filename>
-            <filename>C:/Users/USER/Downloads/symbol_1.png</filename>
-            <filename>C:/Users/USER/Downloads/symbol_0.png</filename>
-            <filename>C:/Users/USER/Downloads/wild_text.png</filename>
-            <filename>C:/Users/USER/Downloads/scatter_text.png</filename>
-            <filename>C:/Users/USER/Downloads/symbol_scatter.png</filename>
-            <filename>C:/Users/USER/Downloads/border.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/symbol_scatter.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/symbol_wild.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/symbol_0.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/symbol_1.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/symbol_2.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/symbol_3.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/symbol_4.png</filename>
+            <filename>../../TET NGUYEN DAN-assets/symbol_5.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

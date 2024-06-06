@@ -16,7 +16,7 @@ ActionMapping._createAction = function (actionType, info) {
             break;
         
         default:
-            cc.log("Can not parse actionCmd:", actionType);
+            // cc.log("Can not parse actionCmd:", actionType);
     }
 
     // cc.log(JSON.stringify(info));
@@ -26,7 +26,7 @@ ActionMapping._createAction = function (actionType, info) {
 ActionMapping.dispatch = function (actionType, info) {
     if (ActionFactory.checkAction(actionType, info)) {
         var data = ActionMapping._createAction(actionType, info);
-        cc.log("-----sent Action-----", data);
+        // cc.log("-----sent Action-----", data);
         if (data) {
             var pk = JSON.stringify(data)
             gv.gameclient.send(pk);

@@ -7,14 +7,14 @@
         <Size X="0.0000" Y="0.0000" />
         <Children>
           <AbstractNodeData Name="bg_item" ActionTag="-1917253627" Tag="11" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="-23.0000" RightMargin="-23.0000" TopMargin="-23.0000" BottomMargin="-23.0000" ctype="SpriteObjectData">
-            <Size X="46.0000" Y="46.0000" />
+            <Size X="136.0000" Y="180.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
+            <FileData Type="Normal" Path="dao.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
         </Children>

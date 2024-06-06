@@ -74,9 +74,6 @@ var LoginGUI = cc.Scene.extend({
         this.connector.setVisible(true);
     },
     onUserInfo: function (name, x, y) {
-        console.log(name);
-        console.log(x);
-        console.log(y);
 
     }
 })

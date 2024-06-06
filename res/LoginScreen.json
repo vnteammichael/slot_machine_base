@@ -16,8 +16,8 @@
         "Children": [
           {
             "FileData": {
-              "Type": "Normal",
-              "Path": "background.jpg",
+              "Type": "Default",
+              "Path": "Default/Sprite.png",
               "Plist": ""
             },
             "BlendFunc": {
@@ -247,17 +247,17 @@
           }
         ],
         "Size": {
-          "X": 393.0,
-          "Y": 852.0
+          "X": 430.0,
+          "Y": 932.0
         },
         "Name": "Scene",
         "ctype": "SingleNodeObjectData"
       },
       "UsedResources": [
-        "background.jpg",
         "Default/Button_Disable.png",
         "Default/Button_Normal.png",
-        "Default/Button_Press.png"
+        "Default/Button_Press.png",
+        "Default/Sprite.png"
       ],
       "ctype": "GameFileData"
     }

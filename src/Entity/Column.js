@@ -1,9 +1,14 @@
 
 
-var Column = cc.Node.extend({
+var Column = cc.Class.extend({
     ctor: function(config){
-        this._super();
+        // this.super();
+
+        this.callbacks = new Map();
         this.item_list = [];
+        this.x = config.x;
+        this.y = config.y;
+        this.node = config.node;
         this.num_row = config.num_row;
         this.distance = config.distance;
         this.num_items = config.num_item || 15;
@@ -17,20 +22,20 @@ var Column = cc.Node.extend({
     init : function () {
         // Create 15 item with random code
         for ( var i = 0;i<this.num_items; i++){
-            var code = Math.floor(Math.random() * 10);// rand from 0 -> 9
-            if (code === 8){
+            var code = Math.floor(Math.random() * 8);// rand from 0 -> 9
+            if (code == 6){
                 code = "wild";
             }
-            if (code === 9){
+            if (code == 7){
                 code = "scatter";
             }
             var item = new Item(code);
-            var pos = cc.p(0,(this.start_step + i) * this.distance)
+            var pos = cc.p(this.x,this.y + (this.start_step + i) * this.distance)
             item.anchorX = 0.5;
             item.anchorY = 0.5;
             item.setPosition(pos);
             item.setWaitTime(this.wait_time);
-            this.addChild(item);
+            this.node.bg_reel.addChild(item);
             this.item_list.push(item);
 
         }
@@ -47,11 +52,16 @@ var Column = cc.Node.extend({
     spinReel: function(){
         for(var i = 0;i<this.num_items;i++){
             var point = this.num_items - this.num_row - 2;
-            var pos = cc.p(0,(this.start_step + i - point) * this.distance);
+            var pos = cc.p(this.x,this.y + (this.start_step + i - point) * this.distance);
             this.item_list[i].spin(pos);
         }
         this.action = ACTIONS.RUN;
-        this.schedule(this.resetReel, 1);
+        this.schedule(this.resetReel,this, 1);
+    },
+    changeItemColor: function(change = false){
+        for(var i=1;i<this.num_row+1;i++){
+            this.item_list[i].changeColor(change);
+        }
     },
     renderResult: function(item_code,delay){
         //check if get in lines win, call a anim
@@ -60,6 +70,7 @@ var Column = cc.Node.extend({
                 this.item_list[i].animResult(delay);
             }
         }
+
     },
     resetReel: function(){
         var point = this.num_items - this.num_row - 2;
@@ -76,13 +87,13 @@ var Column = cc.Node.extend({
             for(var i=this.num_items - point;i<this.num_items;i++){
                 if(this.item_list[i].getAction() == ACTIONS.STOP){
 
-                    var pos = cc.p(0,(this.start_step + i) * this.distance);
+                    var pos = cc.p(this.x,this.y + (this.start_step + i) * this.distance);
                     this.item_list[i].setPosition(pos);
-                    var code = Math.floor(Math.random() * 10);// rand from 0 -> 9
-                    if (code==8){
+                    var code = Math.floor(Math.random() * 8);// rand from 0 -> 9
+                    if (code==6){
                         code = "wild";
                     }
-                    if (code == 9){
+                    if (code == 7){
                         code = "scatter";
                     }
                     this.item_list[i].setItemCode(code);
@@ -90,7 +101,24 @@ var Column = cc.Node.extend({
             }
             
             this.action = ACTIONS.STOP;
-            this.unschedule(this.resetReel);
+            this.unschedule(this.resetReel,this);
+        }
+    },
+    schedule: function(callback, target, interval, repeat, delay) {
+        const scheduler = cc.director.getScheduler();
+        const wrappedCallback = callback.bind(target);
+
+        this.callbacks.set(callback, wrappedCallback);
+
+        scheduler.schedule(wrappedCallback, target, interval, repeat, delay, false);
+    },
+    unschedule: function(callback, target) {
+        const scheduler = cc.director.getScheduler();
+        const wrappedCallback = this.callbacks.get(callback);
+
+        if (wrappedCallback) {
+            scheduler.unschedule(wrappedCallback, target);
+            this.callbacks.delete(callback);
         }
     }
 });

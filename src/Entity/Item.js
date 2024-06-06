@@ -5,24 +5,33 @@ const ACTIONS = {
 }
 const MOVE_SPEED = 3200;
 
-const ITEM_IMAGE_SCALE_MOBILE = 0.125;
-const ITEM_IMAGE_SCALE_PC = 0.06;
+const ITEM_IMAGE_SCALE_MOBILE = 0.6;
+const ITEM_IMAGE_SCALE_PC = 0.24;
 const WILD_SCALE_PC = 0.08;
 const WILD_SCALE_MOBILE = 0.16;
 const BORDER_SCALE_PC = 0.065;
 const BORDER_SCALE_MOBILE = 0.13;
 
 const ITEM_IDLE_SCALE = {
-    "0": -0.005,
-    "1": -0.008,
-    "2": -0.008,
-    "3": -0.009,
-    "4": -0.008,
-    "5": -0.008,
-    "6": -0.002,
-    "7": -0.008,
-    "wild": -0.015,
-    "scatter":0
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "wild": 0,
+    "scatter": 0
+}
+
+const ITEM_IDLE_ZORDER = {
+    "0": 100,
+    "1": 100,
+    "2": 100,
+    "3": 100,
+    "4": 100,
+    "5": 100,
+    "wild": 200,
+    "scatter":400
 }
 
 var Item = cc.Sprite.extend({
@@ -51,43 +60,43 @@ var Item = cc.Sprite.extend({
             this.scaleBorder = BORDER_SCALE_MOBILE;
         }
         //load anim wild
-        this.initAnims();
+        // this.initAnims();
         
         //load border
-        this.loadBorder();
+        // this.loadBorder();
         
         this.loadItemIdle();
         this.addChild(this.node);
     },
     initAnims : function() {
         //wild
-        var delayTime = 0.04;
-        var anim = new cc.Animation();
-        for(var i = 1; i<=21; ++i){
-            var frameName = "cf_" + i +".png";
-            anim.addSpriteFrame(ResourceManager.getSpriteFrame(frameName));
-        }
-        this.anims['wild'] = anim;
-        anim.setDelayPerUnit(delayTime * 2);
-        anim.setRestoreOriginalFrame(true);
-        anim.retain();
-        //sakura leave
-        anim = new cc.Animation();
-        for(var i = 0; i<=19; ++i){
-            var frameName = "sakura-leaves-" + i +".png";
-            anim.addSpriteFrame(ResourceManager.getSpriteFrame(frameName));
-        }
-        this.anims['sakura'] = anim;
-        anim.setDelayPerUnit(delayTime * 2);
-        anim.setRestoreOriginalFrame(true);
-        anim.retain();
+        // var delayTime = 0.04;
+        // var anim = new cc.Animation();
+        // for(var i = 1; i<=21; ++i){
+        //     var frameName = "cf_" + i +".png";
+        //     anim.addSpriteFrame(ResourceManager.getSpriteFrame(frameName));
+        // }
+        // this.anims['wild'] = anim;
+        // anim.setDelayPerUnit(delayTime * 2);
+        // anim.setRestoreOriginalFrame(true);
+        // anim.retain();
+        // //sakura leave
+        // anim = new cc.Animation();
+        // for(var i = 0; i<=19; ++i){
+        //     var frameName = "sakura-leaves-" + i +".png";
+        //     anim.addSpriteFrame(ResourceManager.getSpriteFrame(frameName));
+        // }
+        // this.anims['sakura'] = anim;
+        // anim.setDelayPerUnit(delayTime * 2);
+        // anim.setRestoreOriginalFrame(true);
+        // anim.retain();
 
     },
     loadBorder : function () {
-        var frame = ResourceManager.getSpriteFrame("border.png");
-        var border = new cc.Sprite(frame);
-        this.node.addChild(border);
-        border.scale = this.scaleBorder;
+        // var frame = ResourceManager.getSpriteFrame("border.png");
+        // var border = new cc.Sprite(frame);
+        // this.node.addChild(border);
+        // border.scale = this.scaleBorder;
     },
     setWaitTime : function(wait_time) {
         this.wait_time = wait_time;
@@ -108,17 +117,18 @@ var Item = cc.Sprite.extend({
         this.item_idle.removeAllChildren();
         this.item_idle.stopAllActions();
         switch (this.item_code) {
-            case "wild":
-                this.loadItemWild();
-                break;
-            case "scatter":
-                this.loadItemScatter();
-                break
+            // case "wild":
+            //     this.loadItemWild();
+            //     break;
+            // case "scatter":
+            //     this.loadItemScatter();
+            //     break
             default:
                 
                 this.item_idle.scale = this.scaleItemFrame ;
                 var frame = ResourceManager.getSpriteFrame("symbol_" + this.item_code + ".png");
                 this.item_idle.setSpriteFrame(frame);
+                this.setLocalZOrder(ITEM_IDLE_ZORDER[this.item_code]);
                 break;
         }
         this.item_idle.scale = this.item_idle.scale + ITEM_IDLE_SCALE[this.item_code];
@@ -164,7 +174,7 @@ var Item = cc.Sprite.extend({
     },
     spin: function(position){
         this.action = ACTIONS.RUN;
-         var distance = Math.sqrt((position.x - this.node.x) *(position.x - this.node.x) + (position.y - this.node.y)*(position.y - this.node.y))
+        var distance = Math.sqrt((position.x - this.node.x) *(position.x - this.node.x) + (position.y - this.node.y)*(position.y - this.node.y))
         var speed = MOVE_SPEED;
         
         var time = distance / speed;
@@ -173,42 +183,45 @@ var Item = cc.Sprite.extend({
             this.stop(position);
         }.bind(this))))
     },
-    // move: function(lastPos,nextPos,targetPos){
-    //     this.setPosition(lastPos);
-    //     var distance = Math.sqrt((nextPos.x - this.node.x) *(nextPos.x - this.node.x) + (nextPos.y - this.node.y)*(nextPos.y - this.node.y))
-    //     var speed = MOVE_SPEED.PHASE_1;
-    //     if (Math.abs(this.node.y - targetPos.y)<DISTANCE_PHASE_1){
-    //         speed = Math.abs(this.node.y - targetPos.y)*4
-    //     }
-    //     var time = distance / speed;
-    //     // console.log(Math.abs(this.node.y - targetPos.y));
-    //     var moveTo = cc.moveTo(time,nextPos);
-    //     if (this.node.y - targetPos.y>0){
-    //     // if (distance!==0){
-    //         this.node.runAction(cc.sequence(moveTo, cc.callFunc(function () {
-    //         this.move(this.node.position,cc.p(this.node.x,this.node.y-50), targetPos);
-    //         }.bind(this))));
-    //     }else{
-    //         this.node.y = 400;
-    //     }
-        
-    //     // this.node.runAction(cc.sequence(moveTo));
-    // }, 
     stop: function (position) {
         this.setPosition(position);
-        var action = cc.jumpTo(0.5,cc.p(0,this.node.y+5),5,2)
+        var action = cc.jumpTo(0.5,cc.p(this.node.x,this.node.y+5),5,2)
         this.node.runAction(action);
         this.action = ACTIONS.STOP;
     },
+    // animResult: function(delay) {
+    //     var color = this.color;
+    //     var action = cc.sequence(
+    //         cc.tintTo(0.01, 254, 247, 24),
+    //         cc.blink(0.4, 3),
+    //         cc.tintTo(0.01, color.r, color.g, color.b)
+
+    //     );
+    //     this.node.runAction(cc.sequence(cc.delayTime(delay), action));
+    // }
     animResult: function(delay) {
-        var color = this.color;
+        // this.changeColor(true);
+        // var action = cc.sequence(
+        //     cc.blink(0.5, 3)
+
+        // );
+        // this.node.runAction(cc.sequence(cc.delayTime(delay), action));
         var action = cc.sequence(
-            cc.tintTo(0.01, 254, 247, 24),
-            cc.blink(0.4, 3),
-            cc.tintTo(0.01, color.r, color.g, color.b)
+            cc.tintTo(0.01, 255, 255, 255),
+            cc.blink(0.48, 2),
+            cc.tintTo(0.01, 127, 127, 127)
 
         );
         this.node.runAction(cc.sequence(cc.delayTime(delay), action));
+        // this.changeColor(false);
+    },
+    changeColor: function(change = false) {
+        if (!change){
+            // this.node.color = new cc.hexToColor('#ffffff');
+            this.node.runAction(new cc.tintTo(0, 255, 255, 255));
+        }else{
+            this.node.runAction(new cc.tintTo(0, 127, 127, 127));
+        }
     }
 
 

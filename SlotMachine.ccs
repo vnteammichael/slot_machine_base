@@ -3,50 +3,37 @@
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
-        <PlistImageFolder Image="wild_symbol.png" PListFile="wild_symbol.plist" Name=".wild_symbol_PList.Dir">
-          <PlistImageFile Name="cf_0.png" Key="cf_0.png" />
-          <PlistImageFile Name="cf_1.png" Key="cf_1.png" />
-          <PlistImageFile Name="cf_10.png" Key="cf_10.png" />
-          <PlistImageFile Name="cf_11.png" Key="cf_11.png" />
-          <PlistImageFile Name="cf_12.png" Key="cf_12.png" />
-          <PlistImageFile Name="cf_13.png" Key="cf_13.png" />
-          <PlistImageFile Name="cf_14.png" Key="cf_14.png" />
-          <PlistImageFile Name="cf_15.png" Key="cf_15.png" />
-          <PlistImageFile Name="cf_16.png" Key="cf_16.png" />
-          <PlistImageFile Name="cf_17.png" Key="cf_17.png" />
-          <PlistImageFile Name="cf_18.png" Key="cf_18.png" />
-          <PlistImageFile Name="cf_19.png" Key="cf_19.png" />
-          <PlistImageFile Name="cf_2.png" Key="cf_2.png" />
-          <PlistImageFile Name="cf_20.png" Key="cf_20.png" />
-          <PlistImageFile Name="cf_21.png" Key="cf_21.png" />
-          <PlistImageFile Name="cf_4.png" Key="cf_4.png" />
-          <PlistImageFile Name="cf_5.png" Key="cf_5.png" />
-          <PlistImageFile Name="cf_6.png" Key="cf_6.png" />
-          <PlistImageFile Name="cf_7.png" Key="cf_7.png" />
-          <PlistImageFile Name="cf_8.png" Key="cf_8.png" />
-          <PlistImageFile Name="cf_9.png" Key="cf_9.png" />
-        </PlistImageFolder>
-        <Image Name="add.png" />
-        <Image Name="AUTO TABLE.png" />
-        <Image Name="background.jpg" />
-        <Image Name="BACKGROUND.png" />
-        <Image Name="BANG.png" />
-        <Image Name="bot.png" />
+        <Image Name="btn_add_h.png" />
+        <Image Name="btn_auto_h.png" />
+        <Image Name="btn_bet_h.png" />
+        <Image Name="btn_close_h (1).png" />
+        <Image Name="btn_help_n.png" />
+        <Image Name="btn_history_n.png" />
+        <Image Name="btn_menu_h.png" />
+        <Image Name="btn_minus_h.png" />
+        <Image Name="btn_turbo_act_n.png" />
+        <Image Name="btn_voice_on_n.png" />
+        <Image Name="btnwinn.png" />
+        <Image Name="credit_bg.png" />
+        <Image Name="dao.png" />
         <Project Name="Item.csd" Type="Node" />
-        <Image Name="KHUNG.png" />
+        <Image Name="khung1.png" />
+        <Image Name="Layer 11.png" />
+        <Image Name="Layer 15.png" />
+        <Image Name="Layer 16.png" />
+        <Image Name="Layer 18.png" />
+        <Image Name="Layer 19.png" />
         <Project Name="layer_mobile.csd" Type="Layer" />
         <Project Name="layer_pc.csd" Type="Layer" />
-        <Project Name="LoadingScreen.csd" Type="Scene" />
+        <Image Name="loading_bar.png" />
+        <Image Name="loading_bar_01.png" />
         <Project Name="LoginScreen.csd" Type="Scene" />
+        <Image Name="main.png" />
         <Image Name="NEN.png" />
-        <Image Name="panel_1.png" />
-        <Image Name="panel_2.png" />
         <Project Name="Popup.csd" Type="Node" />
-        <Image Name="reduce.png" />
-        <Image Name="SPIN BUTTON.png" />
-        <Image Name="symbol_0.png" />
-        <Image Name="top.png" />
-        <Image Name="wild_symbol.png" />
+        <Image Name="tran.png" />
+        <Image Name="tru.png" />
+        <Image Name="vang.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

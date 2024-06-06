@@ -26,9 +26,9 @@
         "src/Manager/GameGUIManager.js",
 
 
-        "src/Screen/MobileScreen.js",
-        "src/Screen/PCScreen.js",
+        "src/Screen/PlayScreen.js",
         "src/Screen/LoginScreen.js",
+        "src/Screen/LoadingScreen.js",
 
 
         "src/Utils.js",

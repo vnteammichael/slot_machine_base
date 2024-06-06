@@ -4,7 +4,7 @@
     <Content>
       <Animation Duration="0" Speed="1.0000" />
       <ObjectData Name="Scene" Tag="68" ctype="GameNodeObjectData">
-        <Size X="393.0000" Y="852.0000" />
+        <Size X="430.0000" Y="932.0000" />
         <Children>
           <AbstractNodeData Name="bg" ActionTag="-277024274" Alpha="160" Tag="69" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="-763.5000" RightMargin="-763.5000" TopMargin="-114.0000" BottomMargin="-114.0000" ctype="SpriteObjectData">
             <Size X="1920.0000" Y="1080.0000" />
@@ -14,7 +14,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5000" />
             <PreSize X="4.8855" Y="1.2676" />
-            <FileData Type="Normal" Path="background.jpg" Plist="" />
+            <FileData Type="Default" Path="Default/Sprite.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="btn_login" ActionTag="-1243888982" Tag="70" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="173.5000" RightMargin="173.5000" TopMargin="578.4000" BottomMargin="237.6000" TouchEnable="True" FontSize="14" ButtonText="Login" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">

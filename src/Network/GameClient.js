@@ -26,7 +26,6 @@ var GameClient = cc.Class.extend({
     onOpen: function() {
         cc.log("Connection opened.");
         this.isConnected = true;
-        cc.log(this.socket)
         // Additional open event logic here
         // this.socket.send(JSON.stringify({"cmd":1000,"data":{"user_id":1}}));
     },

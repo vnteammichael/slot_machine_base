@@ -5,12 +5,16 @@ ResourceManager.addSpriteFramesResource = function (source) {
         case "item":
             if (ResourceManager.idleItem === undefined){
                 cc.spriteFrameCache.addSpriteFrames(res.item_plist,res.item_png);
-                cc.spriteFrameCache.addSpriteFrames(res.wild_symbol_plist,res.wild_symbol_png);
-                cc.spriteFrameCache.addSpriteFrames(res.sakura_leave_plist,res.sakura_leave_png);
                     ResourceManager.idleItem = true;
             }
             break;
-    
+        case "than_tai":
+            if (ResourceManager.thanTai === undefined){
+                cc.spriteFrameCache.addSpriteFrames(res.than_tai_plist,res.than_tai_png);
+                    ResourceManager.thanTai = true;
+            }
+            break;
+
         default:
             break;
     }

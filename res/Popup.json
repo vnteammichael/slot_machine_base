@@ -1,0 +1,89 @@
+{
+  "ID": "cbb32e38-a472-4e36-b5f5-cac8bc4c43bc",
+  "Version": "3.10.0.0",
+  "Name": "Popup",
+  "Content": {
+    "Content": {
+      "Animation": {
+        "Duration": 0,
+        "Speed": 1.0,
+        "Timelines": [],
+        "ctype": "TimelineActionData"
+      },
+      "AnimationList": [],
+      "ObjectData": {
+        "Tag": 27,
+        "Children": [
+          {
+            "InnerNodeSize": {
+              "Width": 200,
+              "Height": 300
+            },
+            "ScrollDirectionType": "Vertical",
+            "ClipAble": false,
+            "BackColorAlpha": 102,
+            "ComboBoxIndex": 1,
+            "SingleColor": {
+              "G": 150,
+              "B": 100
+            },
+            "FirstColor": {
+              "G": 150,
+              "B": 100
+            },
+            "EndColor": {},
+            "ColorVector": {
+              "ScaleY": 1.0
+            },
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PositionPercentXEnabled": true,
+            "PositionPercentYEnabled": true,
+            "PrePosition": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "PreSize": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "LeftMargin": -100.0,
+            "RightMargin": -100.0,
+            "TopMargin": -100.0,
+            "BottomMargin": -100.0,
+            "Tag": 223,
+            "ActionTag": 104220277,
+            "Size": {
+              "X": 200.0,
+              "Y": 200.0
+            },
+            "Name": "ScrollView_1",
+            "ctype": "ScrollViewObjectData"
+          }
+        ],
+        "Size": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Name": "Node",
+        "ctype": "SingleNodeObjectData"
+      },
+      "UsedResources": [],
+      "ctype": "GameFileData"
+    }
+  },
+  "Type": "Node"
+}

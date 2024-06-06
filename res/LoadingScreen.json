@@ -16,7 +16,7 @@
           {
             "FileData": {
               "Type": "Normal",
-              "Path": "background.jpg",
+              "Path": "TET NGUYEN DAN.jpg",
               "Plist": ""
             },
             "BlendFunc": {
@@ -28,12 +28,12 @@
               "ScaleY": 0.5
             },
             "Position": {
-              "X": 196.5019,
-              "Y": 426.0
+              "X": 215.0,
+              "Y": 466.0
             },
             "Scale": {
-              "ScaleX": 0.5809,
-              "ScaleY": 0.8055
+              "ScaleX": 0.59,
+              "ScaleY": 0.59
             },
             "CColor": {},
             "IconVisible": false,
@@ -44,24 +44,24 @@
               "Y": 0.5
             },
             "PreSize": {
-              "X": 4.8855,
-              "Y": 1.2676
+              "X": 1.6744,
+              "Y": 1.7167
             },
-            "LeftMargin": -763.498,
-            "RightMargin": -763.502,
-            "TopMargin": -114.0,
-            "BottomMargin": -114.0,
-            "Tag": 3,
-            "ActionTag": -1080275332,
+            "LeftMargin": -145.0,
+            "RightMargin": -145.0,
+            "TopMargin": -334.0,
+            "BottomMargin": -334.0,
+            "Tag": 177,
+            "ActionTag": 1932735476,
             "Size": {
-              "X": 1920.0,
-              "Y": 1080.0
+              "X": 720.0,
+              "Y": 1600.0
             },
-            "Alpha": 135,
             "Name": "bg",
             "ctype": "SpriteObjectData"
           },
           {
+            "ProgressInfo": 100,
             "ImageFileData": {
               "Type": "Default",
               "Path": "Default/LoadingBarFile.png",
@@ -72,14 +72,15 @@
               "ScaleY": 0.5
             },
             "Position": {
-              "X": 196.5,
-              "Y": 255.6
+              "X": 215.0,
+              "Y": 191.8769
             },
             "Scale": {
               "ScaleX": 1.4,
               "ScaleY": 1.4
             },
             "CColor": {
+              "R": 87,
               "B": 0
             },
             "IconVisible": false,
@@ -87,16 +88,16 @@
             "PositionPercentYEnabled": true,
             "PrePosition": {
               "X": 0.5,
-              "Y": 0.3
+              "Y": 0.2059
             },
             "PreSize": {
-              "X": 0.5089,
-              "Y": 0.0164
+              "X": 0.4651,
+              "Y": 0.015
             },
-            "LeftMargin": 96.5,
-            "RightMargin": 96.5,
-            "TopMargin": 589.4,
-            "BottomMargin": 248.6,
+            "LeftMargin": 115.0,
+            "RightMargin": 115.0,
+            "TopMargin": 733.123,
+            "BottomMargin": 184.8769,
             "Tag": 51,
             "ActionTag": 599764253,
             "Size": {
@@ -105,60 +106,18 @@
             },
             "Name": "loading_bar",
             "ctype": "LoadingBarObjectData"
-          },
-          {
-            "FontSize": 20,
-            "IsCustomSize": true,
-            "LabelText": "",
-            "PlaceHolderText": "Text Field",
-            "MaxLengthText": 10,
-            "TouchEnable": true,
-            "AnchorPoint": {
-              "ScaleX": 0.5,
-              "ScaleY": 0.5
-            },
-            "Position": {
-              "X": 203.3134,
-              "Y": 427.7715
-            },
-            "Scale": {
-              "ScaleX": 1.0,
-              "ScaleY": 1.0
-            },
-            "CColor": {},
-            "IconVisible": false,
-            "PrePosition": {
-              "X": 0.5173,
-              "Y": 0.5021
-            },
-            "PreSize": {
-              "X": 0.2137,
-              "Y": 0.027
-            },
-            "LeftMargin": 161.3134,
-            "RightMargin": 147.6866,
-            "TopMargin": 412.7285,
-            "BottomMargin": 416.2715,
-            "Tag": 67,
-            "ActionTag": 2019545875,
-            "Size": {
-              "X": 84.0,
-              "Y": 23.0
-            },
-            "Name": "TextField_1",
-            "ctype": "TextFieldObjectData"
           }
         ],
         "Size": {
-          "X": 393.0,
-          "Y": 852.0
+          "X": 430.0,
+          "Y": 932.0
         },
         "Name": "Scene",
         "ctype": "SingleNodeObjectData"
       },
       "UsedResources": [
-        "background.jpg",
-        "Default/LoadingBarFile.png"
+        "Default/LoadingBarFile.png",
+        "TET NGUYEN DAN.jpg"
       ],
       "ctype": "GameFileData"
     }

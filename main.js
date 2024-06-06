@@ -1,8 +1,8 @@
 const pcWidth = 480;
 const pcHeight = 360;
 
-const mobileHeight = 852;
-const mobileWidth = 393;
+const mobileHeight = 932;
+const mobileWidth = 430;
 
 const pcRatio = pcWidth/pcHeight;
 var gv = gv || {};
@@ -14,43 +14,37 @@ cc.game.onStart = function(){
 
     // Pass true to enable retina display, on Android disabled by default to improve performance
     cc.view.enableRetina(cc.sys.os === cc.sys.OS_IOS ? true : false);
-    
-    // Adjust viewport meta
-   
-    cc.LoaderScene.preload(g_resources, function () {
-        cc.view.adjustViewPort(true);
+    cc.view.adjustViewPort(true);
 
-        if (cc.sys.os === cc.sys.OS_X || cc.sys.os === cc.sys.OS_WINDOWS){
-            var currentBrowserRatio = window.innerWidth/window.innerHeight;
-            if (currentBrowserRatio >= pcRatio){
-                cc.view._adjustSizeToBrowser(); 
-                cc.view.setDesignResolutionSize(pcWidth, pcHeight, cc.ResolutionPolicy.SHOW_ALL);
-            }else{
-                cc.view._adjustSizeToBrowser(); 
-                cc.view.setDesignResolutionSize(pcWidth, pcHeight, cc.ResolutionPolicy.FIXED_HEIGHT);
-            }
-            
-            
+    if (cc.sys.os === cc.sys.OS_X || cc.sys.os === cc.sys.OS_WINDOWS){
+        var currentBrowserRatio = window.innerWidth/window.innerHeight;
+        if (currentBrowserRatio >= pcRatio){
+            cc.view._adjustSizeToBrowser(); 
+            cc.view.setDesignResolutionSize(pcWidth, pcHeight, cc.ResolutionPolicy.SHOW_ALL);
         }else{
-            cc.view.enableAutoFullScreen(false);
-            cc.view.setDesignResolutionSize(mobileWidth, mobileHeight, cc.ResolutionPolicy.FIXED_HEIGHT);
-            
+            cc.view._adjustSizeToBrowser(); 
+            cc.view.setDesignResolutionSize(pcWidth, pcHeight, cc.ResolutionPolicy.FIXED_HEIGHT);
         }
-        cc.view.resizeWithBrowserSize(true);
-        var urlParams = new URLSearchParams(window.location.search);
-        gv.gameclient  = new GameClient();
-        GameGUIManager.getSceneOrCreate(MainScene)
-        // gv.gameclient.connect("ws://localhost:8080")
         
-        // setTimeout(() => {
-        //     if (gv.gameclient.isConnected) {
-        //         // gv.gameclient.send(JSON.stringify({"cmd":1000,"data":{"token":1}}));
-        //         ActionMapping.dispatch(LoginAction,{"token":1})
-        //     }
-        // }, 1000);
         
-        cc.director.runScene(new LoginGUI());
-    }, this);
+    }else{
+        cc.view.enableAutoFullScreen(false);
+        cc.view.setDesignResolutionSize(mobileWidth, mobileHeight, cc.ResolutionPolicy.FIXED_HEIGHT);
+        
+    }
+    cc.view.resizeWithBrowserSize(true);
+    var urlParams = new URLSearchParams(window.location.search);
+    gv.TOKEN = urlParams.get("q");
+    gv.USER_ID = "token";
+    gv.gameclient  = new GameClient();
+    // GameGUIManager.getSceneOrCreate(MainScene);
+    gv.gameclient.connect("ws://192.168.120.30:8080");
+    
+
+
+    var loaderScene = new LoaderScene(g_resources);
+    cc.director.runScene(loaderScene);
+   
 };
 
 let debounceTimer;
