@@ -236,22 +236,32 @@ var PlayScreen = cc.Layer.extend({
         switch (type) {
             case ccui.Widget.TOUCH_ENDED:
 
-                if (sender.data_bonus && sender.data_bonus.length>0 && this.is_free_game){
+                var flag = true;
+                for(var i = 0;i<this.config.col;i++){
+                    flag = flag && !this.columns[i].getAction();
+                }
+
+                if (sender.data_bonus && sender.data_bonus.length>0 && this.is_free_game && flag){
                     this.setLabelNoti();
                     var str = sender.data_bonus.length + " free games";
                     this.setLabelNoti(str);
                     var data = sender.data_bonus.pop();
                     data['valid_amount'] = sender.valid_amount + data['reward']
+                    sender.valid_amount += data['reward']
                     this.loadAnimSpinFree(data);
                     this.enableButtonChangeBet(false);
-                }else{
-                    this.is_free_game = false;
-                    this.enableButtonChangeBet(true);
+
+                }else if (sender.data_bonus ){
+                    if (sender.data_bonus.length == 0){
+                        this.is_free_game = false;
+                        this.enableButtonChangeBet(true);
+                    }
                 }
-                if (!this.is_auto && this.is_stop && !this.is_free_game){
+                if (!this.is_auto && !this.is_free_game && flag){
                     this.setLabelNoti();
                     ActionMapping.dispatch(SpinAction,{"token":gv.token,"bet":BET_VALUES[this.current_bet_index],"game_code":"SL001"});
                 }
+    
 
                 break;
             default:
@@ -313,6 +323,12 @@ var PlayScreen = cc.Layer.extend({
             }
             this.getResultRender.line_win = data['line_win']
             this.schedule(this.getResultRender, 1);
+            if (this.is_auto){
+                this.is_stop = false;
+                
+                this.start_time = (new Date()).getTime();
+                this.end_time = (Object.keys(this.getResultRender.line_win).length * 2 + 0.2) * 1000;
+            }
             
         }
         //set win number
@@ -532,12 +548,28 @@ var PlayScreen = cc.Layer.extend({
         }
     },
     getNextSpin: function(){
-        if (this.is_auto && this.is_stop){
+        if (this.is_auto && this.is_stop && !this.is_free_game){
             this.setLabelNoti();
             ActionMapping.dispatch(SpinAction,{"token":gv.token,"bet":BET_VALUES[this.current_bet_index],"game_code":"SL001"})
-            this.num_auto_selected -= 1
+            this.num_auto_selected -= 1;
             this.txt_auto_spin.setString(this.num_auto_selected);
-        }else if (this.is_auto && ((new Date()).getTime() - this.start_time >= this.end_time * (1/TIME_SCALE[this.time_scale_index]))){
+        }else if(this.is_auto && this.is_stop &&this.btn_spin.data_bonus && this.btn_spin.data_bonus.length>0 && this.is_free_game){
+            this.setLabelNoti();
+            var str = this.btn_spin.data_bonus.length + " free games";
+            this.setLabelNoti(str);
+            var data = this.btn_spin.data_bonus.pop();
+            data['valid_amount'] = this.btn_spin.valid_amount + data['reward']
+            this.btn_spin.valid_amount += data['reward']
+            this.num_auto_selected -= 1;
+            this.txt_auto_spin.setString(this.num_auto_selected);
+            this.loadAnimSpinFree(data);
+            this.enableButtonChangeBet(false);
+            if (this.btn_spin.data_bonus.length == 0){
+                this.is_free_game = false;
+                this.enableButtonChangeBet(true);
+            }
+        }
+        else if (this.is_auto && ((new Date()).getTime() - this.start_time >= this.end_time * (1/TIME_SCALE[this.time_scale_index]))){
             this.is_stop = true;
         }
 
