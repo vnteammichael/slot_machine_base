@@ -17,14 +17,16 @@ cc.game.onStart = function(){
     cc.view.adjustViewPort(true);
 
     if (cc.sys.os === cc.sys.OS_X || cc.sys.os === cc.sys.OS_WINDOWS){
-        var currentBrowserRatio = window.innerWidth/window.innerHeight;
-        if (currentBrowserRatio >= pcRatio){
-            cc.view._adjustSizeToBrowser(); 
-            cc.view.setDesignResolutionSize(pcWidth, pcHeight, cc.ResolutionPolicy.SHOW_ALL);
-        }else{
-            cc.view._adjustSizeToBrowser(); 
+        // var currentBrowserRatio = window.innerWidth/window.innerHeight;
+        // if (currentBrowserRatio >= pcRatio){
+        //     cc.view._adjustSizeToBrowser(); 
+        //     cc.view.setDesignResolutionSize(pcWidth, pcHeight, cc.ResolutionPolicy.SHOW_ALL);
+        // }else{
+        //     cc.view._adjustSizeToBrowser(); 
+        //     cc.view.setDesignResolutionSize(pcWidth, pcHeight, cc.ResolutionPolicy.FIXED_HEIGHT);
+        // }
+        // cc.view._adjustSizeToBrowser(); 
             cc.view.setDesignResolutionSize(pcWidth, pcHeight, cc.ResolutionPolicy.FIXED_HEIGHT);
-        }
         
         
     }else{
@@ -33,17 +35,24 @@ cc.game.onStart = function(){
         
     }
     cc.view.resizeWithBrowserSize(true);
+
+  
+
+
     var urlParams = new URLSearchParams(window.location.search);
     gv.TOKEN = urlParams.get("q");
-    gv.USER_ID = "token";
+    cc.log(gv.TOKEN);
+    gv.USER_ID = gv.TOKEN;
+                
     gv.gameclient  = new GameClient();
     // GameGUIManager.getSceneOrCreate(MainScene);
-    gv.gameclient.connect("ws://192.168.120.30:8080");
     
 
 
-    var loaderScene = new LoaderScene(g_resources);
-    cc.director.runScene(loaderScene);
+    // var loaderScene = new LoaderScene();
+    // cc.director.runScene(loaderScene);
+    
+    GameGUIManager.view(LoaderScene);
    
 };
 
@@ -51,18 +60,20 @@ let debounceTimer;
 window.addEventListener('resize', function() {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(adjustCanvas, 100); // Đợi 100ms sau sự kiện resize cuối cùng để thực hiện
-    // adjustCanvas()
+    // adjustCanvas();
 });
+
+
 
 function adjustCanvas() {
     if (cc.sys.os === cc.sys.OS_X || cc.sys.os === cc.sys.OS_WINDOWS){
-        var currentBrowserRatio = window.innerWidth/window.innerHeight;
-        if (currentBrowserRatio >= pcRatio){
-            cc.view.setDesignResolutionSize(pcWidth, pcHeight, cc.ResolutionPolicy.SHOW_ALL);
-            // cc.view.resizeWithBrowserSize(true);
-        }else{
-            cc.view.setDesignResolutionSize(pcWidth, pcHeight, cc.ResolutionPolicy.FIXED_HEIGHT);
-        }
+        // var currentBrowserRatio = window.innerWidth/window.innerHeight;
+        // if (currentBrowserRatio >= pcRatio){
+        //     cc.view.setDesignResolutionSize(pcWidth, pcHeight, cc.ResolutionPolicy.SHOW_ALL);
+        //     // cc.view.resizeWithBrowserSize(true);
+        // }else{
+        //     cc.view.setDesignResolutionSize(pcWidth, pcHeight, cc.ResolutionPolicy.FIXED_HEIGHT);
+        // }
         var canvasSize = cc.director.getWinSize(); // Lấy kích thước mới của canvas
         var scene = cc.director.getRunningScene();
         
@@ -76,7 +87,11 @@ function adjustCanvas() {
             scene.anchorY = 0.5;
             scene.setPosition(newX - scene.width / 2, newY - scene.height / 2);
         }
+        // cc.log(canvasSize);
+        
+        // cc.log(scene.width,scene.height)
         cc.view.resizeWithBrowserSize(true);
+        
         
     }
 };

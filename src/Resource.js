@@ -7,11 +7,13 @@ var res = {
     item_plist:"res/item.plist",
     item_png:"res/item.png",
     than_tai_png:"res/than_tai.png",
-    than_tai_plist:"res/than_tai.plist"
+    than_tai_plist:"res/than_tai.plist",
+    ip_config:"res/ipConfig.json"
 
 };
 
-var g_resources = [];
+var g_resources = [
+];
 for (var i in res) {
     g_resources.push(res[i]);
 }

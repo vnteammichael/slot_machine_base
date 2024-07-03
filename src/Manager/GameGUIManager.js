@@ -31,11 +31,11 @@ GameGUIManager.getSceneOrCreate = function (scene) {
             //}
             s = GameGUIManager.scene.MainGUI;
             break;
-        case CampaignGUI:
+        case LoaderScene:
             //if(GameGUIManager.scene.CampaignGUI === undefined){
-                GameGUIManager.scene.LoginGUI = new LoginGUI();
+                GameGUIManager.scene.LoaderScene = new LoaderScene();
             //}
-            s = GameGUIManager.scene.LoginGUI;
+            s = GameGUIManager.scene.LoaderScene;
             break;
         default:
             s = new scene();

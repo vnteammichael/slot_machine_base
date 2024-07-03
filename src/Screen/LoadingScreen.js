@@ -6,9 +6,9 @@ var SCALE = {
 }
 
 var LoaderScene = cc.Scene.extend({
-    ctor: function (resources) {
+    ctor: function () {
         this._super();
-        this.resources = resources;
+        this.resources = g_resources;
         this.loaded = 0;
         this.backGround;
         this.progressBar;
@@ -100,6 +100,7 @@ var LoaderScene = cc.Scene.extend({
                     }
                 });
             } else {
+                
                 // All resources are loaded
                 self.onResourcesLoaded();
             }
@@ -110,10 +111,22 @@ var LoaderScene = cc.Scene.extend({
     }, 
     onResourcesLoaded: function () {
 
-        if (gv.gameclient.isConnected) {
-            // gv.gameclient.send(JSON.stringify({"cmd":1000,"data":{"token":1}}));
-            ActionMapping.dispatch(LoginAction,{"token":gv.USER_ID,"game_code":"001"})
-        }
+        // if (gv.gameclient.isConnected) {
+        //     // gv.gameclient.send(JSON.stringify({"cmd":1000,"data":{"token":1}}));
+        //     ActionMapping.dispatch(LoginAction,{"token":gv.USER_ID})
+        // }
+
+        var checkConnectionInterval = setInterval(function() {
+            if (gv.gameclient.isConnected) {
+                clearInterval(checkConnectionInterval); // Xóa bỏ khoảng thời gian kiểm tra
+    
+                // Thực hiện hành động khi kết nối thành công
+                ActionMapping.dispatch(LoginAction, {"token": gv.TOKEN});
+    
+            }else{
+                gv.gameclient.connect();
+            }
+        }, 1000);
 
 
         // GameGUIManager.getSceneOrCreate(MainScene);

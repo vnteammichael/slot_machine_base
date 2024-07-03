@@ -4,17 +4,30 @@ let WebSocket = window.WebSocket || WebSocket ||  window.MozWebSocket;
 var GameClient = cc.Class.extend({
     ctor: function () {
         this.socket;
+        
+        this._serverName;
+        this._port;
+        this._url;
+        this.loadConfig();
 
-        // this.connect("ws://localhost:8080");
-        // let keepAliveInterval = setInterval(() => {
-        //     if (this.socket.readyState === WebSocket.OPEN) {
-        //         this.socket.send(JSON.stringify({ type: "ping" }));
-        //     }
-        // }, 30000);
     },
-    connect: function(url) {
-        console.log("Attempting to connect to WebSocket server at", url);
-        this.socket = new WebSocket(url);
+    loadConfig: function () {
+        var fileName = res.ip_config;
+        cc.loader.loadJson(fileName, (err, data) => {
+            if (err) {
+                return cc.log("load failed");
+            } else {
+                this._serverName = data['server'];
+                this._port = data['port'];
+                this._url = "ws://"+this._serverName+":" + this._port
+            }
+        });
+        cc.log(this._url)
+        
+    },
+    connect: function() {
+        console.log("Attempting to connect to WebSocket server at", this._url);
+        this.socket = new WebSocket(this._url);
 
         this.socket.onopen = this.onOpen.bind(this);
         this.socket.onmessage = this.onMessage.bind(this);
@@ -76,6 +89,7 @@ var GameClient = cc.Class.extend({
         cc.log("Connection closed.");
         this.isConnected = false;
         // Clean-up logic here
+        GameGUIManager.scene.MainGUI.layer.popup(1);
     },
 
     // Disconnect from the server

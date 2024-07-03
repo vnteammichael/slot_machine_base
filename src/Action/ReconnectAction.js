@@ -15,7 +15,7 @@ var ReconnectAction = Action.extend({
         // var valid_amount = this.info.valid_amount;
         // var status = this.info.status;
         if (this.info.status){
-            gv.gameclient.connect("ws://192.168.120.30:8080");
+            gv.gameclient.connect();
         }else{
             
         }

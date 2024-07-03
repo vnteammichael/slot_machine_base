@@ -63,11 +63,11 @@ var Column = cc.Class.extend({
             this.item_list[i].changeColor(change);
         }
     },
-    renderResult: function(item_code,delay){
+    renderResult: function(item_code,delay,size_win_line){
         //check if get in lines win, call a anim
         for(var i=1;i<this.num_row+1;i++){
             if(this.item_list[i].getAction() == ACTIONS.STOP &&( this.item_list[i].getItemCode() == item_code || this.item_list[i].getItemCode() == "wild")){
-                this.item_list[i].animResult(delay);
+                this.item_list[i].animResult(delay, size_win_line);
             }
         }
 
@@ -102,6 +102,10 @@ var Column = cc.Class.extend({
             
             this.action = ACTIONS.STOP;
             this.unschedule(this.resetReel,this);
+            // for(var i=this.num_items - point;i<this.num_items;i++){
+            //     this.item_list[i].changeColor()
+            //     cc.log(i,this.item_list[i])
+            // }
         }
     },
     schedule: function(callback, target, interval, repeat, delay) {

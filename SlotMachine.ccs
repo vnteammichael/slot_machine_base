@@ -3,37 +3,46 @@
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
-        <Image Name="btn_add_h.png" />
-        <Image Name="btn_auto_h.png" />
-        <Image Name="btn_bet_h.png" />
-        <Image Name="btn_close_h (1).png" />
-        <Image Name="btn_help_n.png" />
-        <Image Name="btn_history_n.png" />
-        <Image Name="btn_menu_h.png" />
-        <Image Name="btn_minus_h.png" />
-        <Image Name="btn_turbo_act_n.png" />
-        <Image Name="btn_voice_on_n.png" />
-        <Image Name="btnwinn.png" />
-        <Image Name="credit_bg.png" />
+        <Folder Name="button">
+          <Image Name="btn_add_h.png" />
+          <Image Name="btn_auto_h.png" />
+          <Image Name="btn_bet_h.png" />
+          <Image Name="btn_close_h (1).png" />
+          <Image Name="btn_help_n.png" />
+          <Image Name="btn_history_n.png" />
+          <Image Name="btn_menu_h.png" />
+          <Image Name="btn_minus_h.png" />
+          <Image Name="btn_turbo_act_n.png" />
+          <Image Name="btn_voice_on_n.png" />
+          <Image Name="btnwinn.png" />
+          <Image Name="credit_bg.png" />
+        </Folder>
+        <Folder Name="main_layout">
+          <Image Name="khung1.png" />
+          <Image Name="Layer 11.png" />
+          <Image Name="Layer 15.png" />
+          <Image Name="Layer 16.png" />
+          <Image Name="Layer 18.png" />
+          <Image Name="Layer 19.png" />
+          <Image Name="loading_bar.png" />
+          <Image Name="loading_bar_01.png" />
+          <Image Name="main.png" />
+          <Image Name="NEN.png" />
+          <Image Name="tran.png" />
+          <Image Name="tru.png" />
+          <Image Name="vang.png" />
+          <Image Name="bannerbgbs1.png" />
+        </Folder>
+        <Folder Name="popup">
+          <Image Name="BLACKBOARD.png" />
+          <Image Name="popup1.png" />
+          <Image Name="popup2.png" />
+        </Folder>
         <Image Name="dao.png" />
         <Project Name="Item.csd" Type="Node" />
-        <Image Name="khung1.png" />
-        <Image Name="Layer 11.png" />
-        <Image Name="Layer 15.png" />
-        <Image Name="Layer 16.png" />
-        <Image Name="Layer 18.png" />
-        <Image Name="Layer 19.png" />
         <Project Name="layer_mobile.csd" Type="Layer" />
         <Project Name="layer_pc.csd" Type="Layer" />
-        <Image Name="loading_bar.png" />
-        <Image Name="loading_bar_01.png" />
         <Project Name="LoginScreen.csd" Type="Scene" />
-        <Image Name="main.png" />
-        <Image Name="NEN.png" />
-        <Project Name="Popup.csd" Type="Node" />
-        <Image Name="tran.png" />
-        <Image Name="tru.png" />
-        <Image Name="vang.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

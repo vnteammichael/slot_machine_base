@@ -45,7 +45,7 @@ var NumberAnimationAction = cc.ActionInterval.extend({
     update: function (dt) {  // dt ranges from 0 to 1
         this._currentNumber = this._startNumber + (this._endNumber - this._startNumber) * dt;
         if (this.target) {
-            this.target.setString(convertNumberToString(Math.round(this._currentNumber*100)/100));
+            this.target.setString(convertNumberToString(Math.round(this._currentNumber * 100) / 100));
         }
     }
 });
@@ -53,4 +53,35 @@ var NumberAnimationAction = cc.ActionInterval.extend({
 // Helper function to easily create the animation action
 cc.NumberAnimationAction = function (duration, startNumber, endNumber) {
     return new NumberAnimationAction(duration, startNumber, endNumber);
+};
+
+var ChangeLabelStringAction = cc.ActionInterval.extend({
+    _targetLabel: null,
+    _newString: "",
+    _duration: 0,
+    _elapsed: 0,
+
+    ctor: function(duration, newString) {
+        this._super(duration);
+        this._newString = newString;
+        this._duration = duration;
+    },
+
+    startWithTarget: function(target) {
+        this._super(target);
+        this._targetLabel = target;
+        this._elapsed = 0;
+    },
+
+    update: function(dt) {
+        this._elapsed += dt;
+
+        if (this._elapsed >= this._duration) {
+            this._targetLabel.string =  this._newString;
+        }
+    }
+});
+
+cc.ChangeLabelStringAction = function (duration, newString) {
+    return new ChangeLabelStringAction(duration, newString);
 };

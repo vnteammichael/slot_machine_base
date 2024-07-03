@@ -116,6 +116,7 @@ var Item = cc.Sprite.extend({
         this.setVisible(true);
         this.item_idle.removeAllChildren();
         this.item_idle.stopAllActions();
+        this.node.stopAllActions();
         switch (this.item_code) {
             // case "wild":
             //     this.loadItemWild();
@@ -132,6 +133,8 @@ var Item = cc.Sprite.extend({
                 break;
         }
         this.item_idle.scale = this.item_idle.scale + ITEM_IDLE_SCALE[this.item_code];
+        this.node.color = new cc.color(255,255,255);
+        this.item_idle.color = new cc.color(255,255,255);
         
     },
     loadItemWild: function(){
@@ -199,28 +202,41 @@ var Item = cc.Sprite.extend({
     //     );
     //     this.node.runAction(cc.sequence(cc.delayTime(delay), action));
     // }
-    animResult: function(delay) {
+    animResult: function(delay , size_win_line) {
         // this.changeColor(true);
-        // var action = cc.sequence(
-        //     cc.blink(0.5, 3)
-
-        // );
-        // this.node.runAction(cc.sequence(cc.delayTime(delay), action));
+        var scale = cc.scaleBy(0.45,0.98);
         var action = cc.sequence(
-            cc.tintTo(0.01, 255, 255, 255),
-            cc.blink(0.48, 2),
-            cc.tintTo(0.01, 127, 127, 127)
+            cc.delayTime(delay),
+            cc.tintTo(0, 255, 255, 255),
+            scale,
+            scale.reverse(),
+            scale,
+            scale.reverse()
 
         );
-        this.node.runAction(cc.sequence(cc.delayTime(delay), action));
-        // this.changeColor(false);
+        if ((size_win_line>1) && this.item_code != "wild"){
+            action = cc.sequence(
+                cc.delayTime(delay),
+                cc.tintTo(0, 255, 255, 255),
+                scale,
+                scale.reverse(),
+                scale,
+                scale.reverse(),
+                cc.tintTo(0, 127, 127, 127),
+                cc.delayTime(2 * (size_win_line - 1) - delay + 0.2)
+    
+            );
+        }
+        this.node.runAction(action.repeatForever());
     },
     changeColor: function(change = false) {
         if (!change){
             // this.node.color = new cc.hexToColor('#ffffff');
-            this.node.runAction(new cc.tintTo(0, 255, 255, 255));
+            this.node.color = new cc.color(255,255,255);
         }else{
-            this.node.runAction(new cc.tintTo(0, 127, 127, 127));
+            // this.node.runAction(new cc.tintTo(0, 127, 127, 127));
+            
+            this.node.color = new cc.color(127,127,127);
         }
     }
 

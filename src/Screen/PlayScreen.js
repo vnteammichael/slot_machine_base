@@ -4,11 +4,11 @@ var DISTANCE = {
     "mobile": 109
 }
 var A_STEP_X = {
-    "pc": 35,
+    "pc": 34.6,
     "mobile": 82.8
 }
 var B_STEP_X = {
-    "pc": 170,
+    "pc": 171,
     "mobile": 49.4
 }
 var PERCENT_HEIGHT = {
@@ -52,7 +52,7 @@ var PlayScreen = cc.Layer.extend({
         this.bg_reel.anchorY = 0.5;
         this.bg_reel.x = cc.winSize.width/2;
         this.bg_reel.y = cc.winSize.height/2;
-       this.addChild(this.bg_reel);
+        this.addChild(this.bg_reel);
 
         
         //load config
@@ -65,7 +65,11 @@ var PlayScreen = cc.Layer.extend({
         this.than_tai = top_layer.getChildByName('than_tai');
 
         var bot_layer = this.bg_reel.getChildByName("bot_layer");
-        bot_layer.setLocalZOrder(1000);        
+        bot_layer.setLocalZOrder(1000); 
+        this.txt_noti = ccui.helper.seekWidgetByName(bot_layer,"txt_noti");
+        this.txt_noti.setVisible(false);
+        this.txt_noti.setString("");
+
         var bg_bot = this.bg_reel.getChildByName("bg_bot");
         bg_bot.setLocalZOrder(999);
 
@@ -80,6 +84,8 @@ var PlayScreen = cc.Layer.extend({
         var actionBy = new cc.rotateBy(4, 360);
         var action = new cc.RepeatForever(actionBy);
         this.spin_icon.runAction(action);
+        this.txt_auto_spin = this.btn_spin.getChildByName("txt_auto_spin");
+        this.txt_auto_spin.setVisible(false);
 
 
 
@@ -90,6 +96,7 @@ var PlayScreen = cc.Layer.extend({
         this.btn_reduce.addTouchEventListener(this.onSubPress.bind(this));
 
         this.btn_auto = this.panel_group_btn_1.getChildByName("btn_auto");
+        this.btn_auto.addTouchEventListener(this.onAutoPress.bind(this));
         
         this.btn_turbo = this.panel_group_btn_1.getChildByName("btn_turbo");
         this.btn_turbo.addTouchEventListener(this.onTurboPress.bind(this));
@@ -121,6 +128,35 @@ var PlayScreen = cc.Layer.extend({
         this.txt_mid = credit_bg.getChildByName("txt_mid");
         this.txt_right = credit_bg.getChildByName("txt_right");
 
+        this.bg_popup = this.bg_reel.getChildByName("bg_popup");
+        this.bg_popup.setLocalZOrder(2000);
+        this.bg_popup.setVisible(false);
+
+        this.popup1 = this.bg_reel.getChildByName("popup1");
+        this.popup1.setLocalZOrder(2000);
+        this.popup1.setVisible(false);
+        var btn_reconnect = this.popup1.getChildByName("btn_popup");
+        btn_reconnect.addTouchEventListener(this.onReconnectPress.bind(this));
+        
+        this.popup2 = this.bg_reel.getChildByName("popup2");
+        this.popup2.setLocalZOrder(2000);
+        this.popup2.setVisible(false);
+        var btn_close = this.popup2.getChildByName("btn_popup");
+        btn_close.addTouchEventListener(this.onClosePopupPress.bind(this));
+        
+        this.popup3 = this.bg_reel.getChildByName("popup3");
+        this.popup3.setLocalZOrder(2000);
+        this.popup3.setVisible(false);
+        var btn_close_auto_popup = this.popup3.getChildByName("btn_close_auto_popup");
+        btn_close_auto_popup.addTouchEventListener(this.onClosePopupPress.bind(this));
+        var btn_50 = this.popup3.getChildByName("btn_50");
+        btn_50.addTouchEventListener(this.onAutoSelectPress.bind(this));
+        var btn_100 = this.popup3.getChildByName("btn_100");
+        btn_100.addTouchEventListener(this.onAutoSelectPress.bind(this));
+        var btn_200 = this.popup3.getChildByName("btn_200");
+        btn_200.addTouchEventListener(this.onAutoSelectPress.bind(this));
+        var btn_999 = this.popup3.getChildByName("btn_999");
+        btn_999.addTouchEventListener(this.onAutoSelectPress.bind(this));
 
         this.columns = [];
         for(var i = 0;i<this.config.col;i++){
@@ -141,6 +177,12 @@ var PlayScreen = cc.Layer.extend({
         this.setLabelWinScore(0.00)
 
         this.loadAnimThanTai();
+
+        this.is_auto = false;
+        this.num_auto_selected = 0;
+
+        this.is_stop = true;
+        this.is_free_game = false;
 
         return true;
     },
@@ -171,17 +213,20 @@ var PlayScreen = cc.Layer.extend({
                     this.columns[i].changeItemColor(true);
                 }
             }
-            var delay = 0.8;
+            this.setLabelNotiAnim(this.getResultRender.line_win);
+            var delay = 0.2;
             for(var k in this.getResultRender.line_win){
-                var count = 0
+                var count = 0;
                 for(var i = 0;i<this.config.col;i++){
-                    this.columns[i].renderResult(k,delay);
+                    this.columns[i].renderResult(k,delay,size);
                     count += 1;
                     if (count > this.getResultRender.line_win[k].consecutive){
                         break;
                     }
                 }
-                delay += 0.8;
+                // var new_string = convertNumberToString(this.getResultRender.line_win[k]['reward']);
+                // this.setLabelNoti(new_string=new_string,duration=delay,delay = size * 2);
+                delay += 2;
             }
             this.unschedule(this.getResultRender);
         }
@@ -190,13 +235,24 @@ var PlayScreen = cc.Layer.extend({
         
         switch (type) {
             case ccui.Widget.TOUCH_ENDED:
-                
 
-                ActionMapping.dispatch(SpinAction,{"token":gv.token,"bet":BET_VALUES[this.current_bet_index]})
+                if (sender.data_bonus && sender.data_bonus.length>0 && this.is_free_game){
+                    this.setLabelNoti();
+                    var str = sender.data_bonus.length + " free games";
+                    this.setLabelNoti(str);
+                    var data = sender.data_bonus.pop();
+                    data['valid_amount'] = sender.valid_amount + data['reward']
+                    this.loadAnimSpinFree(data);
+                    this.enableButtonChangeBet(false);
+                }else{
+                    this.is_free_game = false;
+                    this.enableButtonChangeBet(true);
+                }
+                if (!this.is_auto && this.is_stop && !this.is_free_game){
+                    this.setLabelNoti();
+                    ActionMapping.dispatch(SpinAction,{"token":gv.token,"bet":BET_VALUES[this.current_bet_index],"game_code":"SL001"});
+                }
 
-                // var array = ["scatter"];
-                // var code = array[Math.floor(Math.random() * array.length)];
-                // this.item.setItemCode(code);
                 break;
             default:
                 break;
@@ -213,10 +269,26 @@ var PlayScreen = cc.Layer.extend({
             }
             this.getResultRender.line_win = data.line_win
             this.schedule(this.getResultRender, 1);
+            if (this.is_auto){
+                this.is_stop = false;
+                
+                this.start_time = (new Date()).getTime();
+                this.end_time = (Object.keys(this.getResultRender.line_win).length * 2 + 0.2) * 1000;
+            }
+
+            if (data.is_free_game){
+                this.is_free_game = true;
+                this.btn_spin.data_bonus = data.bonus;
+                this.btn_spin.valid_amount = data.valid_amount;
+            }else{
+                this.is_free_game = false;
+                this.btn_spin.data_bonus = null;
+            }
+            
         }
         //set win number
         if (data.total_reward >0){
-            var duration = 0.5 * Object.keys(data.line_win).length
+            var duration = 2 * Object.keys(data.line_win).length
             
             this.setLabelWinScore(data.total_reward,duration, delay = 0.5);
         }else{
@@ -224,6 +296,35 @@ var PlayScreen = cc.Layer.extend({
             this.setLabelWinScore(data.total_reward);
         }
         this.setLabelUserScore(Math.floor(data.valid_amount * 100)/100);
+    },
+    loadAnimSpinFree: function(data){
+        
+        var result = data['result'];
+        for (var i = 0;i<this.columns.length;i++){
+            this.columns[i].loadResult(result[i].reverse())
+        }
+        var flag = true;
+        for(var i = 0;i<this.config.col;i++){
+            flag = flag && !this.columns[i].getAction();
+        }
+        if(flag){
+            for(var i = 0;i<this.config.col;i++){
+                this.columns[i].spinReel();
+            }
+            this.getResultRender.line_win = data['line_win']
+            this.schedule(this.getResultRender, 1);
+            
+        }
+        //set win number
+        if (data['reward'] >0){
+            var duration = 2 * Object.keys(data['line_win']).length
+            
+            this.setLabelWinScore(data['reward'],duration, delay = 0.5);
+        }else{
+            
+            this.setLabelWinScore(data['reward']);
+        }
+        this.setLabelUserScore(Math.floor(data['valid_amount'] * 100)/100);
     },
     onAddPress: function(sender,type){
         
@@ -279,14 +380,79 @@ var PlayScreen = cc.Layer.extend({
                 break;
         }
     },
+    onAutoPress: function(sender,type){
+
+        switch (type) {
+            case ccui.Widget.TOUCH_ENDED:
+                if (!this.is_auto){
+                    this.bg_popup.setVisible(true);
+                    this.popup3.setVisible(true);
+                }else{
+                    this.unschedule(this.getNextSpin);
+                    this.is_auto = false;
+                    this.num_auto_selected = 0;
+                    this.spin_icon.setVisible(true);
+                    this.txt_auto_spin.setVisible(false);
+                    this.btn_add.setEnabled(true);
+                    this.btn_reduce.setEnabled(true);
+                }
+                break;
+            default:
+                break;
+        }
+    },
     setLabelBetScore: function(bet) 
     {
         this.txt_right.setString(convertNumberToString(bet))
 
     },
+    setLabelNoti: function(new_string = "") 
+    {
+
+        if (new_string==""){
+            this.txt_noti.stopAllActions();
+            this.txt_noti.setString("");
+            this.txt_noti.setVisible(false);
+        }else if (new_string != this.txt_mid.string){
+            this.txt_noti.setVisible(true);
+            this.txt_noti.setString(new_string);
+            cc.log(new_string)
+
+        }
+
+    },
+    setLabelNotiAnim: function(data) 
+    {
+        var size = Object.keys(data).length;
+        if (size > 0){
+            var list_action = [];
+            this.txt_noti.setVisible(true);
+            var duration = 2;
+            for(var k in data){
+                // list_action.push(cc.delayTime(0.2));
+                // var new_string = convertNumberToString(data[k]['reward']);
+                var new_string = "";
+                if (k == "scatter"){
+                    new_string = data[k]['reward'] + " free games";
+                }else{
+                    new_string = convertNumberToString(Math.round(data[k]['reward'] * 100) / 100);
+                }
+                var labelAnimation = new ChangeLabelStringAction(duration,new_string);
+                // var action = cc.sequence( labelAnimation,cc.delayTime(size * 2 - duration + 0.2));
+                list_action.push(labelAnimation);
+            }
+            // var spawnActions = cc.spawn.apply(null, list_action);
+            var sequence = cc.sequence(list_action);
+            var repeat = cc.repeatForever(sequence);
+    
+            // Chạy hành động spawn trên label
+            this.txt_noti.runAction(repeat);
+        }
+
+    },
     setLabelWinScore: function(win, duration = 0, delay = 0) 
     {
-        var numAnimation = new NumberAnimationAction(duration, 0, win); // Animate from 0 to 100 in 2 seconds
+        var numAnimation = new NumberAnimationAction(duration, 0, win); 
         this.txt_mid.runAction(cc.sequence(cc.delayTime(delay), numAnimation));
         // this.txt_mid.setString(convertNumberToString(win))
 
@@ -295,5 +461,99 @@ var PlayScreen = cc.Layer.extend({
     {
         this.txt_left.setString(convertNumberToString(score))
 
+    },
+    popup: function(type_popup)
+    {
+        //type 1: disconnected
+        //type 2: not enough money
+        //3 popup auto spin
+        switch (type_popup) {
+            case 1:
+                this.bg_popup.setVisible(true);
+                this.popup1.setVisible(true);
+                break;
+            case 2:
+                this.bg_popup.setVisible(true);
+                this.popup2.setVisible(true);
+                break;
+            case 3:
+                this.bg_popup.setVisible(true);
+                this.popup3.setVisible(true);
+                break;
+            default:
+                break;
+
+        }
+
+    },
+    onClosePopupPress: function(sender,type){
+        
+        switch (type) {
+            case ccui.Widget.TOUCH_ENDED:
+                this.bg_popup.setVisible(false);
+                this.popup2.setVisible(false);
+                this.popup3.setVisible(false);
+                break;
+            default:
+                break;
+        }
+    },
+    onReconnectPress: function(sender,type){
+        
+        switch (type) {
+            case ccui.Widget.TOUCH_ENDED:
+                this.bg_popup.setVisible(false);
+                this.popup1.setVisible(false);
+                
+                GameGUIManager.view(LoaderScene);
+                break;
+            default:
+                break;
+        }
+    },
+    onAutoSelectPress: function(sender,type){
+        
+        switch (type) {
+            case ccui.Widget.TOUCH_ENDED:
+                this.bg_popup.setVisible(false);
+                this.popup3.setVisible(false);
+                this.is_auto = true;
+                this.num_auto_selected = parseInt(sender.titleText);
+                this.spin_icon.setVisible(false);
+                this.txt_auto_spin.setVisible(true);
+                this.txt_auto_spin.setString(this.num_auto_selected);
+                // this.btn_add.setEnabled(false);
+                // this.btn_reduce.setEnabled(false);
+                this.enableButtonChangeBet(false);
+                this.schedule(this.getNextSpin,1);
+                break;
+            default:
+                break;
+        }
+    },
+    getNextSpin: function(){
+        if (this.is_auto && this.is_stop){
+            this.setLabelNoti();
+            ActionMapping.dispatch(SpinAction,{"token":gv.token,"bet":BET_VALUES[this.current_bet_index],"game_code":"SL001"})
+            this.num_auto_selected -= 1
+            this.txt_auto_spin.setString(this.num_auto_selected);
+        }else if (this.is_auto && ((new Date()).getTime() - this.start_time >= this.end_time * (1/TIME_SCALE[this.time_scale_index]))){
+            this.is_stop = true;
+        }
+
+        if (this.num_auto_selected <= 0){
+            this.unschedule(this.getNextSpin);
+            this.is_auto = false;
+            this.num_auto_selected = 0;
+            this.spin_icon.setVisible(true);
+            this.txt_auto_spin.setVisible(false);
+            // this.btn_add.setEnabled(true);
+            // this.btn_reduce.setEnabled(true);
+            this.enableButtonChangeBet(true);
+        }
+    },
+    enableButtonChangeBet: function(enable){
+        this.btn_add.setEnabled(enable);
+        this.btn_reduce.setEnabled(enable);
     }
 });
